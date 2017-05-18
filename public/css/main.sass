@@ -19,6 +19,11 @@ header
    text-align: center
    font-size: 1.5em
    // color: $color-three
+   display: flex
+   flex-direction: row
+   justify-content: space-between
+   h4
+      font-size: 1em
 main
    flex: 1
 nav
@@ -36,6 +41,23 @@ main, aside
    background: $color-three
    display: flex
    justify-content: space-around
+.login-modal
+   background-color: rgba(0,0,0,0.4)
+   position: fixed
+   top: 0
+   left: 0
+   height: 100%
+   width: 100%
+   z-index: 10
+   overflow:auto
+.inner-modal
+   background-color: white
+   height: 75%
+   width: 75%
+   border-radius: 3px
+   margin: 5% auto
+#login-x
+   text-align: right
 .region_button
    flex-direction: row
    &:hover

@@ -10,9 +10,12 @@
   <body ng-controller="MainController as main">
 
   <!-- ************************************* -->
-    <header><h3>Will I make it on Time  ||  should I leave early</h3></header>
+    <header>
+      <h3>Will I make it on Time  ||  should I leave early</h3>
+      <h4 ng-click="main.showLoginModal = !main.showLoginModal">login</h4>
+   </header>
     <div class="region_options">
-      <div class="region_button">Region A</div>
+      <div ng-click="main.toggleRegionA = ! main.toggleRegionA" class="region_button">Region A</div>
       <div class="region_button">Region B</div>
       <div class="region_button">Region C</div>
       <div class="region_button">Region D</div>
@@ -33,10 +36,15 @@
    <ng-include src="'./partials/aside.html'"></ng-include>
 </aside>
 <!-- ************************************* -->
-  </div>
-
-<footer><h4>Footer</h4>
-
+<div ng-show="main.showLoginModal" class="login-modal">
+   <!-- <ng-include src"'./partials/login.html'"></ng-include> -->
+   <div class="inner-modal">
+      <h3 id="login-x" ng-click="main.showLoginModal = !main.showLoginModal">X</h3>
+      <h1>this is the login page</h1>
+   </div>
+</div>
+<footer>
+   <h4>Footer</h4>
 </footer>
 <!-- ************************************* -->
 

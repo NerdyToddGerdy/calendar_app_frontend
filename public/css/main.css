@@ -14,7 +14,12 @@ body {
 
 header {
   text-align: center;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  header h4 {
+    font-size: 1em; }
 
 main {
   flex: 1; }
@@ -36,6 +41,25 @@ main, aside {
   background: #fed89d;
   display: flex;
   justify-content: space-around; }
+
+.login-modal {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10; }
+
+.inner-modal {
+  background-color: white;
+  height: 75%;
+  width: 75%;
+  border-radius: 3px;
+  margin: 5% auto; }
+
+#login-x {
+  text-align: right; }
 
 .region_button {
   flex-direction: row; }
