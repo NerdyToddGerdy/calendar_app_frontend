@@ -20,10 +20,11 @@ main {
   flex: 1; }
 
 nav {
-  order: -1; }
-
-nav, aside {
+  order: -1;
   background-color: #57a2ff; }
+
+main, aside {
+  border: #57a2ff 1px solid; }
 
 .event {
   margin: 5px;
@@ -47,12 +48,12 @@ nav, aside {
     flex: 1; }
 
   nav {
-    flex: 0 0 12em; }
+    flex: 0 0 20%; }
 
   main {
-    flex: 0 0 20em; }
+    flex: 0 0 40%; }
 
   aside {
-    flex: 0 0 20em; } }
+    flex: 0 0 40%; } }
 
 /*# sourceMappingURL=main.css.map */

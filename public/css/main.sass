@@ -23,8 +23,9 @@ main
    flex: 1
 nav
    order: -1
-nav, aside
    background-color: darken($color-one, 15%)
+main, aside
+   border: darken($color-one, 15%) 1px solid
 .event
    margin: 5px
    padding: 5px 15px
@@ -44,8 +45,8 @@ nav, aside
       flex-direction: row
       flex: 1
    nav
-      flex: 0 0 12em
+      flex: 0 0 20%
    main
-      flex: 0 0 20em
+      flex: 0 0 40%
    aside
-      flex: 0 0 20em
+      flex: 0 0 40%

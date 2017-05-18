@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html ng-app="dating_app">
+<html ng-app="EventApp">
   <head>
     <meta charset="utf-8">
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script> -->
-    <!-- <script type="text/javascript" src="./app.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
     <link rel="stylesheet" href="../css/main.css"/>
     <title>Will I make it on Time  ||  should I leave early</title>
   </head>
-  <body>
+  <body ng-controller="MainController as main">
 
   <!-- ************************************* -->
     <header><h3>Will I make it on Time  ||  should I leave early</h3></header>
-  <div class="container">
-    <!-- ************************************* -->
-
-<main>
-   <div class="region_options">
+    <div class="region_options">
       <div class="region_button">Region A</div>
       <div class="region_button">Region B</div>
       <div class="region_button">Region C</div>
       <div class="region_button">Region D</div>
    </div>
-  <h1>main</h1>
+  <div class="container">
+    <!-- ************************************* -->
+
+<main>
+   <ng-include src="'./partials/main.html'"></ng-include>
 </main>
 
 <!-- ************************************* -->
 <nav>
-  <h1>nav</h1>
+   <ng-include src="'./partials/nav.html'"></ng-include>
 </nav>
 <!-- ************************************* -->
 <aside>
-  <h1>aside</h1>
+   <ng-include src="'./partials/aside.html'"></ng-include>
 </aside>
 <!-- ************************************* -->
   </div>
