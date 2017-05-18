@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html ng-app='CalApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>User Accounts</title>
+    <!--Scripts-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <script src='/js/app.js'></script>
+    <!-- <script src="/js/rzslider.js"></script> -->
+    <!-- <script type="text/javascript" src="js/app_user_auth.js"></script> -->
+    <!--StyleSheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/rzslider.css"/> -->
+    <link rel="stylesheet" href="/css/style_hg.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style_user_auth.css">
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+
+    <!-- FAVICON -->
+    <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+  </head>
+  <body ng-controller = 'MainController as main'>
+    <!-- HEADER -->
+
+
+    <header>
+<h1>Will I make it on Time  ||  should I leave early</h1>
+
+    </header>
+<!-- BODY OF SITE -->
+<main ng-controller="userController as userCtrl" class="container">
+    <!-- LOGIN AND REGISTRATION -->
+
+      <div id="container" class="col-sx-12">
+        <nav>
+        <section class="clsUsername col-xs-6">
+            <h6 ng-if="userCtrl.loggedIn && userCtrl.showProfile==false" ng-click="userCtrl.showProfile=true; userCtrl.showUpdate=false" id="userprofile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>User Profile</h6>
+            <h6 ng-if="userCtrl.loggedIn && userCtrl.showProfile==true" ng-click="userCtrl.showProfile=false" id="userprofile"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Return</h6>
+                    <!-- <span ng-if="userCtrl.loggedIn" id="user-message"><h6>Welcome: {{ userCtrl.user.username }}</h6></span> -->
+              <span ng-if="!userCtrl.loggedIn" id="user-message"></span>
+        </section>
+        <section class="clsLoginLogout col-xs-6">
+              <span ng-if="!userCtrl.loggedIn" class="registerButton"
+              ng-click="userCtrl.showRegistration = !userCtrl.showRegistration; userCtrl.showLogin = false; userCtrl.loginError=false">
+                <h6 style="display:inline"><span class="glyphicon glyphicon-check" aria-hidden="true"></span>Register</h6>
+              </span><span ng-if="!userCtrl.loggedIn" class="registerButton"
+              ng-click="userCtrl.showLogin = !userCtrl.showLogin; userCtrl.showRegistration=false; userCtrl.loginError=false">
+                <h6 style="display:inline"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>Log In</h6>
+              </span>
+              <span ng-if="userCtrl.loggedIn" class="registerButton"
+              ng-click="userCtrl.logout()">
+                <h6><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Log Out</h6>
+              </span>
+              <span ng-if="userCtrl.loggedIn && userCtrl.showProfile" class="registerButton"
+              ng-click="userCtrl.showUpdate = !userCtrl.showUpdate">
+                <h6><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>Update Profile</h6>
+              </span>
+        </section>
+        </nav>
+        <!-- END NAV -->
+        <main>
+        <section class="clsRegister">
+            <div ng-if="userCtrl.showRegistration" id="registration-container">
+              <form class="form-inline" ng-submit="userCtrl.register()">
+                <h3>Register</h3>
+                <div class="form-group">
+                <label for="userCtrl.registerForm.username">Username</label><br/>
+                <input class="register-form-input" type="text" ng-model="userCtrl.registerForm.username" placeholder="required" required>
+              </div>
+                <div class="form-group">
+                <label for="userCtrl.registerForm.password">Password</label><br/>
+                <input class="register-form-input" type="password" ng-model="userCtrl.registerForm.password" placeholder="required" required>
+              </div>
+              <div class="form-group">
+                <label for="userCtrl.registerForm.passwordConfirm">Confirm Password</label><br/>
+                <input class="register-form-input" type="password" ng-model="userCtrl.registerForm.passwordConfirm" placeholder="required" required>
+              </div>
+                <div class="form-group">
+                  <label for="userCtrl.registerForm.state">State</label><br/>
+                <input class="register-form-input" type="text" ng-model="userCtrl.registerForm.state" placeholder="optional"/>
+              </div>
+              <div class="form-group">
+                <label for="userCtrl.registerForm.zipcode">Zip Code</label><br/>
+              <input class="register-form-input" type="text" ng-model="userCtrl.registerForm.zipcode" placeholder="optional"/>
+            </div><br/>
+                <div class="form-group">
+                <button class="register-form-button btn btn-default" type="submit">Register</button>
+              </div>
+            </div>
+              </form>
+          </section>
+      <section class="clsRegisterError">
+          <h4 class="register-error" ng-if="userCtrl.loginError">{{userCtrl.loginError}}</h4>
+      </section>
+      <section class="clsLogin">
+              <form ng-if="userCtrl.showLogin" class="form-inline" ng-submit="userCtrl.login()">
+                <br><h3>Log In</h3>
+                <div class="form-group">
+                  <label for="userCtrl.loginForm.username">Username</label><br/>
+                <input class="register-form-input" type="text" ng-model="userCtrl.loginForm.username" placeholder="required" required/>
+              </div>
+                <div class="form-group">
+                  <label for="userCtrl.loginForm.password">Password</label><br/>
+                <input class="register-form-input" type="password" ng-model="userCtrl.loginForm.password" placeholder="required" required/>
+              </div><br/>
+                <div class="form-group">
+                <button class="register-form-button btn btn-default" type="submit">Log In</button>
+              </div>
+              </form>
+        </section>
+        </div>
+        <!-- USER PROFILE ACCESS -->
+    <div id="userProfile" ng-if="userCtrl.showProfile==true">
+    <section class="clsRegister">
+        <div id="registration-container" ng-if="userCtrl.showUpdate">
+          <form class="form-inline" ng-submit="userCtrl.update(userCtrl.user)">
+            <h3>Update User Profile</h3>
+            <div class="form-group">
+            <label for="userCtrl.user.username">Username</label><br/>
+            <input class="register-form-input" type="text" ng-model="userCtrl.user.username" placeholder="required" required>
+          </div>
+            <div class="form-group">
+            <label for="userCtrl.user.password">Password</label><br/>
+            <input class="register-form-input" type="password" ng-model="userCtrl.user.newpassword" placeholder="required" required>
+          </div>
+          <div class="form-group">
+            <label for="userCtrl.user.passwordConfirm">Confirm Password</label><br/>
+            <input class="register-form-input" type="password" ng-model="userCtrl.user.passwordConfirm" placeholder="required" required>
+          </div>
+            <div class="form-group">
+              <label for="userCtrl.user.state">State</label><br/>
+            <input class="register-form-input" type="text" ng-model="userCtrl.user.state" placeholder="optional"/>
+          </div>
+          <div class="form-group">
+            <label for="userCtrl.user.zipcode">Zip Code</label><br/>
+          <input class="register-form-input" type="text" ng-model="userCtrl.user.zipcode" placeholder="optional"/>
+        </div><br/>
+            <div class="form-group">
+            <button class="register-form-button btn btn-default" type="submit">Update User</button>
+          </div>
+
+        </form>
+        <button id="openD" class="btn btn-danger">Delete User</button>
+
+        <div id="modalDelete">
+          <div id="modal-delete-text-area">
+            Are you sure you want to delete your account?</br>
+            <button ng-click="userCtrl.deleteUser(userCtrl.user._id)" class="btn btn-danger">Yes</button>
+            <button id="closeDelete" class="btn btn-success">No</button>
+          </div>
+          <p ng-if="main.getDeleteModal()"></p>
+        </div>
+        </div>
+      </section>
+
+</main>
+
+<aside>aside</aside>
+<footer class="footer navbar-fixed-bottom">
+  footer
+</footer>
+  </body>
+</html>
