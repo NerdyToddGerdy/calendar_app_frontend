@@ -1,0 +1,58 @@
+/* for development only - check layout */
+/*header, div, main, nav, aside, footer {
+  border: 1px solid red;
+}*/
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #FAEBD7; /*NEW*/
+  font-family: Verdana, Geneva, sans-serif; /*NEW*/
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: #FEFBF7; /*NEW*/
+  border-radius: 5px; /*NEW*/
+}
+
+header {
+  text-align: center; /*NEW*/
+  font-size: 1.5em; /*NEW*/
+  color: #4d5052; /*NEW*/
+}
+
+main {
+  flex: 1;
+}
+
+nav {
+  order: -1;
+}
+
+nav, aside {
+  background-color: #C2C8CD; /*NEW*/
+}
+
+.event {
+  margin: 5px; /*NEW*/
+  padding: 5px 15px 5px 15px; /*NEW*/
+  background-color: #E4E1DE; /*NEW*/
+  border-radius: 5px; /*NEW*/
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    flex: 1;
+  }
+  nav {
+    flex: 0 0 12em;
+  }
+  aside {
+    flex: 0 0 20em;
+  }
+}
