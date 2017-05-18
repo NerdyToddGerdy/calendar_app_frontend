@@ -1,0 +1,51 @@
+$color-three: #fed89d
+$color-one: #a3ccff
+$color-two: #eaeaea
+$breakpoint-tablet: 768px
+body
+   display: flex
+   min-height: 100vh
+   flex-direction: column
+   background-color: $color-one
+   font-family: Verdana, Geneva, sans-serif
+
+.container
+   display: flex
+   flex: 1
+   flex-direction: column
+   background-color: $color-two
+   border-radius: 5px
+header
+   text-align: center
+   font-size: 1.5em
+   // color: $color-three
+main
+   flex: 1
+nav
+   order: -1
+nav, aside
+   background-color: darken($color-one, 15%)
+.event
+   margin: 5px
+   padding: 5px 15px
+   background-color: $color-three
+   border-radius: 5px
+
+.region_options
+   background: $color-three
+   display: flex
+   justify-content: space-around
+.region_button
+   flex-direction: row
+   &:hover
+      color: darken($color-two, 25%)
+@media (min-width: 768px)
+   .container
+      flex-direction: row
+      flex: 1
+   nav
+      flex: 0 0 12em
+   main
+      flex: 0 0 20em
+   aside
+      flex: 0 0 20em
