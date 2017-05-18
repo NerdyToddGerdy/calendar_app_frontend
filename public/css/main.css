@@ -56,7 +56,8 @@ main, aside {
   height: 75%;
   width: 75%;
   border-radius: 3px;
-  margin: 5% auto; }
+  margin: 5% auto;
+  text-align: center; }
 
 #login-x {
   text-align: right; }
