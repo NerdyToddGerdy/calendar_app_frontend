@@ -9,6 +9,7 @@ body {
   flex-direction: column;
   background-color: #FAEBD7; /*NEW*/
   font-family: Verdana, Geneva, sans-serif; /*NEW*/
+  padding: 25px;
 }
 
 .container {
