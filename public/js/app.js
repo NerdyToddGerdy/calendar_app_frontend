@@ -3,6 +3,7 @@ console.log('app.js');
 var app = angular.module('EventApp',[]);
 this.events=[];
 this.userEvents=[];
+this.showUserEvents = true;
 
 app.controller('MainController', ['$http', function($http){
    this.openRegion = function(){
@@ -16,13 +17,17 @@ app.controller('MainController', ['$http', function($http){
       }.bind(this));
    };
 
-      $http({
-         method: "GET",
-         url: 'http://localhost:3000/user_events'
-      }).then(function(response){
-         console.log(response.data);
-         this.userEvents = response.data;
-      }.bind(this));
+   $http({
+      method: "GET",
+      url: 'http://localhost:3000/user_events'
+   }).then(function(response){
+      console.log(response.data);
+      this.userEvents = response.data;
+      // for (var i = 0; i < response.data.length; i++) {
+      //    console.log(response.data[i]);
+      // }
+      console.log(this.userEvents);
+   }.bind(this));
    this.showLoginModal = false;
    this.loginForm = true;
    this.regForm = false;
@@ -37,6 +42,26 @@ app.controller('MainController', ['$http', function($http){
       this.loginForm = false;
       this.regForm = true;
    };
+   this.clickOneEvent = function(event){
+      // this.openRegion();
+      var controller = this;
+      console.log('clicking an event: ', event);
+      console.log(this.events);
+      var myEvent = event;
+      var theirArray = controller.events;
+      var answerArr = [];
+      for (var i = 0; i < theirArray.length; i++) {
+         console.log(myEvent.date, "===", theirArray[i].date);
 
+         // if my events date is same as data in system.... show only matching dates
+         if (myEvent.date == theirArray[i].date){
+            answerArr.push(theirArray[i]);
+         }
+      }
+      console.log(answerArr, '*********');
+      this.events = answerArr;
+      console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
+
+   }.bind(this);
 
 }]);

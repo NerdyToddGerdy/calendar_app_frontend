@@ -6,9 +6,10 @@ body {
   font-family: Verdana, Geneva, sans-serif; }
 
 .event-list {
-  border: #fed89d 3px ridge;
+  border: #fed89d 5px ridge;
   padding: 5px;
-  margin: 3px; }
+  margin: 3px;
+  border-radius: 5px; }
 
 .container {
   display: flex;
@@ -45,6 +46,9 @@ main, aside {
 
 .event-list {
   list-style: none; }
+
+.selected {
+  border-color: #57a2ff; }
 
 .region_options {
   background: #fed89d;
