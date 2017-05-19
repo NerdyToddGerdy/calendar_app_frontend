@@ -15,7 +15,7 @@
       <h4 ng-click="main.showLoginModal = !main.showLoginModal">login</h4>
    </header>
     <div class="region_options">
-      <div ng-click="main.toggleRegionA = ! main.toggleRegionA" class="region_button">Region A</div>
+      <div ng-click="main.openRegionA()" class="region_button">Region A</div>
       <div ng-click="main.toggleRegionB = ! main.toggleRegionB" class="region_button">Region B</div>
       <div ng-click="main.toggleRegionC = ! main.toggleRegionC" class="region_button">Region C</div>
       <div ng-click="main.toggleRegionD = ! main.toggleRegionD" class="region_button">Region D</div>
@@ -32,9 +32,11 @@
    <ng-include src="'./partials/nav.html'"></ng-include>
 </nav>
 <!-- ************************************* -->
+
 <aside>
    <ng-include src="'./partials/aside.html'"></ng-include>
 </aside>
+
 <!-- ************************************* -->
 <div ng-show="main.showLoginModal" class="login-modal">
 
