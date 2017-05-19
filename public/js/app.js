@@ -4,9 +4,8 @@ var app = angular.module('EventApp',[]);
 this.events=[];
 
 app.controller('MainController', ['$http', function($http){
-   this.toggleRegionA = false;
-   this.openRegionA = function(){
-      this.toggleRegionA = !this.toggleRegionA;
+   this.openRegion = function(){
+      // this.toggleRegionA = !this.toggleRegionA;
       $http({
          method:"GET",
          url: 'http://localhost:3000/events'
