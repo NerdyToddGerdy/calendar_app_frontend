@@ -5,6 +5,11 @@ this.events=[];
 this.userEvents=[];
 
 app.controller('MainController', ['$http', function($http){
+   this.toggleRegionA = false;
+   this.showLoginModal = true;
+   this.events = [];
+   this.formdata = {};
+
    this.openRegion = function(){
       // this.toggleRegionA = !this.toggleRegionA;
       $http({
@@ -37,6 +42,4 @@ app.controller('MainController', ['$http', function($http){
       this.loginForm = false;
       this.regForm = true;
    };
-
-
 }]);

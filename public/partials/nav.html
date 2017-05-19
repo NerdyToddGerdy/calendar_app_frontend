@@ -1,4 +1,12 @@
 <h1>nav</h1>
 <h3>Add Event</h3>
+    <form ng-submit="ctrl.eventForm()">
+        <input type="text" ng-model="ctrl.formdata.category" placeholder="Category"/><br>
+        <input type="text" ng-model="ctrl.formdata.user_event_name" placeholder="Event Name"/><br>
+        <input type="date" ng-model="ctrl.formdata.user_event_date" placeholder="Event Date"/><br>
+        <input type="text" ng-model="ctrl.formdata.start_time" placeholder="Start Time"/><br>
+        <input type="text" ng-model="ctrl.formdata.end_time" placeholder="End Time"/><br>
+        <input type="submit" type="submit"/>
+    </form>
 <h3>Update Event</h3>
 <h3>Delete Event</h3>
