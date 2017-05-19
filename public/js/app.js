@@ -2,6 +2,7 @@ console.log('app.js');
 
 var app = angular.module('EventApp',[]);
 this.events=[];
+this.userEvents=[];
 
 app.controller('MainController', ['$http', function($http){
    this.openRegion = function(){
@@ -14,6 +15,14 @@ app.controller('MainController', ['$http', function($http){
          this.events = response.data;
       }.bind(this));
    };
+
+      $http({
+         method: "GET",
+         url: 'http://localhost:3000/user_events'
+      }).then(function(response){
+         console.log(response.data);
+         this.userEvents = response.data;
+      }.bind(this));
    this.showLoginModal = false;
    this.loginForm = true;
    this.regForm = false;

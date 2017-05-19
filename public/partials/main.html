@@ -1,1 +1,8 @@
-<h1>main</h1>
+<h1>User's Events</h1>
+<div class="event-list" ng-repeat="event in main.userEvents ">
+   <li>
+     <h3>{{event.user_event_name}}</h3>
+     <h4>event date: {{event.user_event_date}}</h4>
+     <h5>start time: {{event.start_time}}</h5>
+     <h5>end time: {{event.end_time}}</h5>
+   </li>

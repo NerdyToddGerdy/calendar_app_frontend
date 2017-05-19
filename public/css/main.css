@@ -43,6 +43,9 @@ main, aside {
   border-radius: 5px;
   list-style: none; }
 
+.event-list {
+  list-style: none; }
+
 .region_options {
   background: #fed89d;
   display: flex;
