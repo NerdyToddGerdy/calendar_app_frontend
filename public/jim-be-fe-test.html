@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app='myEvents'>
+  <head>
+    <meta charset="utf-8">
+    <title>User Accounts</title>
+    <!--Scripts-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <!-- <script src='/js/app.js'></script> -->
+<script src='../js/temp_controller.js'></script>
+    <!--StyleSheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/rzslider.css"/> -->
+    <link rel="stylesheet" href="/css/style_hg.css">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/style_user_auth.css"> -->
+    <!-- <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+
+    <!-- FAVICON -->
+    <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+  </head>
+  <body ng-controller = 'EventController as userCtrl'>
+    <header>header</header>
+
+
+  <nav>
+      <div ng-repeat="user in userCtrl.users" class="user">
+            <h3>Full Name: {{ user.full_name }}</h3>
+            <p>User Name: {{ user.price }}<p>
+              <div class="clsReview" ng-show="ctrl.showReviews">
+                <!-- {{ ctrl.showReviews }} -->
+              </div>
+            <button ng-click="ctrl.showReviews = !ctrl.showReviews";>View/Hide Reviews</button>
+          </div>
+</nav>
+<main>
+  <section class="clsLogin">
+          <form ng-if="userCtrl.showLogin" class="form-inline" ng-submit="userCtrl.userLogin()">
+            <br><h3>Log In</h3>
+            <div class="form-group">
+              <label for="userCtrl.loginForm.username">Username</label><br/>
+            <input class="register-form-input" type="text" ng-model="userCtrl.loginForm.username" placeholder="required" required/>
+          </div>
+            <div class="form-group">
+              <label for="userCtrl.loginForm.password">Password</label><br/>
+            <input class="register-form-input" type="password" ng-model="userCtrl.loginForm.password" placeholder="required" required/>
+          </div><br/>
+            <div class="form-group">
+            <button class="register-form-button btn btn-default" type="submit">Log In</button>
+          </div>
+          </form>
+    </section>
+
+
+
+  <section class="clsRegister">
+      <!-- <div ng-if="userCtrl.showRegistration" id="registration-container"> -->
+      <hr>
+        <form class="form-inline" ng-submit="userCtrl.register()">
+          <h3>Register</h3>
+          <div class="form-group">
+          <label for="userCtrl.regformdata.username">Username</label><br/>
+          <input class="register-form-input" type="text" ng-model="userCtrl.regformdata.username" placeholder="required" required>
+        </div>
+
+      </div>
+        <div class="form-group">
+        <label for="userCtrl.regformdata.password">Password</label><br/>
+        <input class="register-form-input" type="password" ng-model="userCtrl.regformdata.password" placeholder="required" required>
+      </div>
+      <div class="form-group">
+        <label for="userCtrl.regformdata.passwordConfirm">Confirm Password</label><br/>
+        <input class="register-form-input" type="password" ng-model="userCtrl.regformdata.passwordConfirm" placeholder="required" required>
+      </div>
+
+        <br>
+        <div class="form-group">
+        <label for="userCtrl.regformdata.full_name">Full Name</label><br/>
+        <input class="register-form-input" type="text" size="35" ng-model="userCtrl.regformdata.full_name" placeholder="required" required>
+      </div><br>
+
+          <div class="form-group">
+            <label for="userCtrl.regformdata.full_address">Full Address</label><br/>
+          <input class="register-form-input" type="text" size="60" ng-model="userCtrl.regformdata.full_address" placeholder="Street, City, State, Zip Code"/>
+        </div><br>
+
+        <div class="form-group">
+          <label for="userCtrl.regformdata.email_address">Email Address</label><br/>
+        <input class="register-form-input" type="text" size="45" ng-model="userCtrl.regformdata.email_address" placeholder="optional"/>
+      </div><br/><br>
+          <div class="form-group">
+          <button class="register-form-button btn btn-default" type="submit">Register</button>
+
+          <hr>
+        </div>
+      <!-- </div> -->
+        </form>
+    </section>
+  <section class="clsRegisterError">
+    <h4 class="register-error" ng-if="userCtrl.loginError">{{userCtrl.loginError}}</h4>
+  </section>
+  </main>
+
+    <aside>aside</aside>
+    <footer class="footer navbar-fixed-bottom">
+      footer
+    </footer>
+      </body>
+    </html>
