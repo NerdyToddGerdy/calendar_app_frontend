@@ -9,6 +9,7 @@ app.controller('MainController', ['$http', function($http){
    this.showLoginModal = true;
    this.events = [];
    this.formdata = {};
+   this.userEvents = [];
 
    this.openRegion = function(){
       // this.toggleRegionA = !this.toggleRegionA;
@@ -42,4 +43,30 @@ app.controller('MainController', ['$http', function($http){
       this.loginForm = false;
       this.regForm = true;
    };
+
+
+
+
+
+
+
+
+
+
+ //Adding crud stuff;
+// function ctrl.addUserEventForm(){
+//        console.log('hello world');
+//    }
+//    this.addUserEventForm = addUserEventForm;
+//        $http({
+//            method: 'POST',
+//            url: 'http://localhost:3000/user_events',
+//            data: this.formdata
+//        }).then(function(result){
+//            console.log("Data from our server: ", result);
+//        });
+//    }
+
+
+
 }]);
