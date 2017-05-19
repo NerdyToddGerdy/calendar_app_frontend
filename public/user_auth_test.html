@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="auth_app">
+  <head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src='app_user.js'></script>
+    <title>auth test</title>
+  </head>
+  <body ng-controller="mainController as ctrl">
+
+{{ ctrl.test }}
+<hr>
+<!--  -->
+<form ng-submit="ctrl.login(userPass)">
+  <h2>Login</h2>
+      <input type="text" ng-model="userPass.username" placeholder="username"/>
+      <input type="password" ng-model="userPass.password" placeholder="password"/>
+      <input type="submit"/>
+    </form>
+<hr>
+<hr>
+<h4 ng-click="ctrl.logout()">Log Out</h4>
+<hr>
+<hr>
+  <p>Logged in username: {{ ctrl.user.username }} </p>
+<h4>
+
+<h4 ng-click="ctrl.getUsers()">Click to see Users</h4>
+<div>{{ctrl.error}}</div>
+<div ng-repeat="user in ctrl.users">
+  <h3>{{user.username}}</h3>
+</div>
+
+
+  </body>
+</html>
