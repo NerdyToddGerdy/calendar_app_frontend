@@ -5,13 +5,15 @@ $breakpoint-tablet: 768px
 body
    display: flex
    min-height: 100vh
+   // max-height: 500px
    flex-direction: column
    background-color: $color-one
    font-family: Verdana, Geneva, sans-serif
 .event-list
-   border: $color-three 3px ridge
+   border: $color-three 5px ridge
    padding: 5px
    margin: 3px
+   border-radius: 5px
 .container
    display: flex
    flex: 1
@@ -29,6 +31,7 @@ header
       font-size: 1em
 main
    flex: 1
+   // overflow-y: scroll
 nav
    order: -1
    background-color: darken($color-one, 15%)
@@ -42,6 +45,8 @@ main, aside
    list-style: none
 .event-list
    list-style: none
+.selected
+   border-color: darken($color-one, 15%)
 .region_options
    background: $color-three
    display: flex
