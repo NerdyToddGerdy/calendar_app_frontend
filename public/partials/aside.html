@@ -1,2 +1,36 @@
-  <h1>aside</h1>
-  <h1 ng-show="main.toggleRegionA">Region A Results</h1>
+  <h1>Local Events</h1>
+  <div class="event-list" ng-show="main.toggleRegionA" ng-repeat="event in main.events | filter: {region_id:1}">
+     <li>
+        <h3>{{event.event_name}}</h3>
+        <h4>event date: {{event.event_date}}</h4>
+        <h5>start time: {{event.start_time}}</h5>
+        <h5>end time: {{event.end_time}}</h5>
+        <h5>region id: {{event.region_id}}</h5>
+     </li>
+  </div>
+  <div class="event-list" ng-show="main.toggleRegionB" ng-repeat="event in main.events |filter: {region_id: 2} ">
+     <li>
+       <h3>{{event.event_name}}</h3>
+       <h4>event date: {{event.event_date}}</h4>
+       <h5>start time: {{event.start_time}}</h5>
+       <h5>end time: {{event.end_time}}</h5>
+       <h5>region id: {{event.region_id}}</h5>
+     </li>  </div>
+  <div class="event-list" ng-show="main.toggleRegionC" ng-repeat="event in main.events |filter: {region_id: 3} ">
+     <li>
+       <h3>{{event.event_name}}</h3>
+       <h4>event date: {{event.event_date}}</h4>
+       <h5>start time: {{event.start_time}}</h5>
+       <h5>end time: {{event.end_time}}</h5>
+       <h5>region id: {{event.region_id}}</h5>
+     </li>
+  </div>
+  <div class="event-list" ng-show="main.toggleRegionD" ng-repeat="event in main.events |filter: {region_id: 4} ">
+     <li>
+       <h3>{{event.event_name}}</h3>
+       <h4>event date: {{event.event_date}}</h4>
+       <h5>start time: {{event.start_time}}</h5>
+       <h5>end time: {{event.end_time}}</h5>
+       <h5>region id: {{event.region_id}}</h5>
+     </li>
+  </div>

@@ -5,6 +5,11 @@ body {
   background-color: #a3ccff;
   font-family: Verdana, Geneva, sans-serif; }
 
+.event-list {
+  border: #fed89d 3px ridge;
+  padding: 5px;
+  margin: 3px; }
+
 .container {
   display: flex;
   flex: 1;
@@ -35,7 +40,11 @@ main, aside {
   margin: 5px;
   padding: 5px 15px;
   background-color: #fed89d;
-  border-radius: 5px; }
+  border-radius: 5px;
+  list-style: none; }
+
+.event-list {
+  list-style: none; }
 
 .region_options {
   background: #fed89d;
@@ -49,14 +58,16 @@ main, aside {
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 10; }
+  z-index: 10;
+  overflow: auto; }
 
 .inner-modal {
   background-color: white;
   height: 75%;
   width: 75%;
   border-radius: 3px;
-  margin: 5% auto; }
+  margin: 5% auto;
+  text-align: center; }
 
 #login-x {
   text-align: right; }

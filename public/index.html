@@ -15,10 +15,10 @@
       <h4 ng-click="main.showLoginModal = !main.showLoginModal">login</h4>
    </header>
     <div class="region_options">
-      <div ng-click="main.toggleRegionA = ! main.toggleRegionA" class="region_button">Region A</div>
-      <div class="region_button">Region B</div>
-      <div class="region_button">Region C</div>
-      <div class="region_button">Region D</div>
+      <div ng-click="main.openRegion(); main.toggleRegionA = !main.toggleRegionA" class="region_button">REGION A</div>
+      <div ng-click="main.openRegion(); main.toggleRegionB = !main.toggleRegionB" class="region_button">REGION B</div>
+      <div ng-click="main.openRegion(); main.toggleRegionC = !main.toggleRegionC" class="region_button">REGION C</div>
+      <div ng-click="main.openRegion(); main.toggleRegionD = !main.toggleRegionD" class="region_button">REGION D</div>
    </div>
   <div class="container">
     <!-- ************************************* -->
@@ -32,15 +32,43 @@
    <ng-include src="'./partials/nav.html'"></ng-include>
 </nav>
 <!-- ************************************* -->
+
 <aside>
    <ng-include src="'./partials/aside.html'"></ng-include>
 </aside>
+
 <!-- ************************************* -->
 <div ng-show="main.showLoginModal" class="login-modal">
-   <!-- <ng-include src"'./partials/login.html'"></ng-include> -->
+
    <div class="inner-modal">
+
       <h3 id="login-x" ng-click="main.showLoginModal = !main.showLoginModal">X</h3>
-      <h1>this is the login page</h1>
+      <h1><span ng-click="main.showLoginForm()">Login</span> / <span ng-click="main.showRegForm()">Register</span></h1>
+
+      <!-- THE LOGIN FORM -->
+      <div class="login-form" ng-show="main.loginForm">
+         <h4>login</h4>
+         <form ng-submit='userCtrl.logIn()'>
+            <input mg-model="userCtrl.username" placeholder="User Name">
+            <input ng-model="userCtrl.password" type="password" placeholder="Password">
+            <input type="submit" ng-click="userCtrl.resetRegestraionForm()" name="register" value="Rigister"/>
+         </form>
+      </div>
+
+      <!-- THE REGISTRATION FORM -->
+      <div class="reg-form" ng-show="main.regForm">
+         <h4>registration</h4>
+         <form ng-submit='userCtrl.logIn()'>
+            <input ng-model="userCtrl.username" placeholder="User Name"/>
+            <input ng-model="userCtrl.fullName" placeholder="Full Name"/>
+            <input ng-model="userCtrl.password" placeholder="Password"/>
+            <input ng-model="userCtrl.isAdmin" placeholder="Is an Admin?"/>
+            <input ng-model="userCtrl.username" placeholder="User Name"/>
+            <input ng-model="userCtrl.username" placeholder="User Name"/>
+            <input ng-model="userCtrl.username" placeholder="User Name"/>
+
+         </form>
+      </div>
    </div>
 </div>
 <footer>
