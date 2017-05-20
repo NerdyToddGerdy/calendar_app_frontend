@@ -1,1 +1,19 @@
-
+<hr>
+<!--  -->
+<section class="clsLogin" ng-show="!userCtrl.user.id">
+<form ng-submit="userCtrl.login(userPass)">
+  <h2>Login</h2>
+  <div class="form-group">
+    <label for="userPass.username">User Name:</label><br/>
+      <input type="text" ng-model="userPass.username" placeholder="username"/>
+    </div>
+      <div class="form-group">
+      <label for="userPass.password">Password"</label><br/>
+      <input type="password" ng-model="userPass.password" placeholder="password"/>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-default" type="submit">Login</button>
+    </div>
+    </form>
+<hr>
+</section> <!-- clsLogin -->
