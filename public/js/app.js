@@ -26,7 +26,8 @@ app.controller('MainController', ['$http', function($http){
    $http({
       method: "GET",
       url: 'http://localhost:3000/user_events'
-   }).then(function(response){
+  }).then(function(response){
+       console.log(response);
       console.log(response.data);
       this.userEvents = response.data;
       // for (var i = 0; i < response.data.length; i++) {
@@ -49,33 +50,6 @@ app.controller('MainController', ['$http', function($http){
       this.regForm = true;
    };
 
-
-
-
-
-
-
-
-
-
-
- //Adding crud stuff;
-// function ctrl.addUserEventForm(){
-//        console.log('hello world');
-//    }
-//    this.addUserEventForm = addUserEventForm;
-//        $http({
-//            method: 'POST',
-//            url: 'http://localhost:3000/user_events',
-//            data: this.formdata
-//        }).then(function(result){
-//            console.log("Data from our server: ", result);
-//        });
-//    }
-
-
-
-
    this.clickOneEvent = function(event){
       // this.openRegion();
       var controller = this;
@@ -97,5 +71,62 @@ app.controller('MainController', ['$http', function($http){
       console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
 
    }.bind(this);
->>>>>>> 5ef8f92d85b7f5ae2afeea89e399853c22563d50
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ___________________USER EVENTS CRUD_______________________________________
+
+
+    this.toggleUserEventForm = function(data){
+        console.log(data);
+    }
+
+    this.toggleUpdateUserEventForm = function(data){
+        console.log(data);
+    }
+
+
+    this.submitEventForm = function(){
+        $http({
+            method: 'POST',
+            url: 'http://localhost:3000/user_events' ,
+            data: this.formdata
+        }).then(function(result){
+            console.log("Data from our server: ", result);
+        });
+        console.log(this.formdata);
+    }
+
+    this.submitUpdateEventForm = function(){
+        $http({
+            method: 'PUT',
+            url: 'http://localhost:3000/user_events',
+            data: this.formdata
+        }).then(function(result){
+            console.log("Data from our server: ", result);
+        });
+        console.log(this.formdata);
+    }
+
+
+    this.removeEvent = function(user_id){
+        console.log(user_id);
+
+    }
+
+
+
 }]);
