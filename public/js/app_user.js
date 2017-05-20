@@ -1,14 +1,21 @@
 console.log('test app.js loaded');
 var app = angular.module('auth_app', []);
 
+
 app.controller('userController', ['$http', function($http){
+
+app.controller('userController', ['$scope','$http', function($scope,$http){
+
+
   this.user = {};
   this.users = [];
   this.userPass = {};
+  this.update_user_data = {};
   this.test = "hi we love angular";
-// this.url = 'http://localhost:3000';
+  this.url = 'http://localhost:3000';
+  //this.update_user_data
 
-    this.url = 'http://localhost:3000';
+/// ******************************* ///
 
 /// ******************************* ///
 
@@ -22,6 +29,7 @@ this.login = function(userPass) {
       console.log('login localstorage: ' + response);
       this.user = response.data.user;
       localStorage.setItem('token', JSON.stringify(response.data.token));
+      localStorage.setItem('my_events_user_id', JSON.stringify(userPass.id));
       localStorage.setItem('my_events_username', JSON.stringify(userPass.username));
       localStorage.setItem('my_events_address', JSON.stringify(userPass.full_address));
       localStorage.setItem('my_events_is_admin', JSON.stringify(userPass.is_admin));
@@ -42,7 +50,7 @@ this.login = function(userPass) {
         if (response.data.status == 401) {
             this.error = "Unauthorized (41)";
         } else {
-          console.log('list users');
+          console.log('refresh user list');
           this.users = response.data;
         }
       }.bind(this));
@@ -60,6 +68,19 @@ this.login = function(userPass) {
       }).then(function(response){
         console.log('delete user response:' + response + ' id ' + num);
         //delete user
+
+/// ******************************* ///
+    this.deleteUser = function(id){
+        console.log('delete user id ' + id);
+        $http({
+          method: 'DELETE',
+          url: this.url + '/users/' + id,
+      }).then(function(response){
+        console.log('delete user response:' + response);
+        this.getUsers();
+        //delete user
+        // return.response.id
+
       }.bind(this));
     };
 
@@ -67,14 +88,38 @@ this.login = function(userPass) {
     this.logout = function(){
       localStorage.clear('token');
       localStorage.clear('my_events_username');
+      localStorage.clear('my_events_user_id');
       localStorage.clear('my_events_address');
       localStorage.clear('my_events_is_admin');
       location.reload();
     };
+/// ******************************* ///
+
+this.getLoggedInUserLocalStorage = function(){
+  // localStorage.getItem('token');
+  this.lsUsername = localStorage.getItem('my_events_username');
+  this.lsUserId = localStorage.getItem('my_events_user_id');
+  this.lsAddress = localStorage.getItem('my_events_address');
+  this.lsIsAdmin = localStorage.getItem('my_events_is_admin');
+};
 
 /// ******************************* ///
+
 this.updateCurrentUser = function(num){
   console.log('updateCurrentUser function . . .');
+
+this.updateCurrentUser = function(id){
+  console.log('updateCurrentUser function . . .' + id);
+    $http({
+    method: 'PUT',
+    url: this.url + '/users/' + id,
+    data: this.update_user_data
+  }).then(function(result) {
+    console.log('Data from server: ', result);
+
+  }.bind(this));      //
+
+
 };
 
 // **************************************** //
