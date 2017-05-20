@@ -1,10 +1,7 @@
 console.log('test app.js loaded');
 var app = angular.module('auth_app', []);
 
-app.controller('mainController', ['$http', function($http){
-
-
-
+app.controller('userController', ['$http', function($http){
   this.user = {};
   this.users = [];
   this.userPass = {};
@@ -52,6 +49,21 @@ this.login = function(userPass) {
     };
 
 /// ******************************* ///
+
+
+/// ******************************* ///
+    this.deleteUser = function(num){
+        $http({
+          url: this.url + '/users/' + num,
+          method: 'DELETE'
+
+      }).then(function(response){
+        console.log('delete user response:' + response + ' id ' + num);
+        //delete user
+      }.bind(this));
+    };
+
+/// ******************************* ///
     this.logout = function(){
       localStorage.clear('token');
       localStorage.clear('my_events_username');
@@ -61,5 +73,28 @@ this.login = function(userPass) {
     };
 
 /// ******************************* ///
+this.updateCurrentUser = function(num){
+  console.log('updateCurrentUser function . . .');
+};
+
+// **************************************** //
+  this.register = function() {
+    console.log('register function . . .');
+    console.log('register Formdata: ', this.regformdata);
+      $http({
+      method: 'POST',
+      url: this.url + '/users',
+      data: this.regformdata
+    }).then(function(result) {
+      console.log('register Data from server: ', result);
+
+      // display success
+      // this.regformdata={}; //clears form
+    }.bind(this));      //
+  }; //end process form
+// **************************************** //
+
+
+
 
 }]);
