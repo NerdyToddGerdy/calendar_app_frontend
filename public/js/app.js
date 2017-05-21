@@ -116,15 +116,19 @@ app.controller('MainController', ['$http', function($http){
             url: 'http://localhost:3000/user_events',
             data: this.formdata
         }).then(function(result){
-            console.log("Data from our server: ", result);
+            console.log("Updated data to our server: ", result);
         });
         console.log(this.formdata);
     }
 
 
-    this.removeEvent = function(user_id){
-        console.log(user_id);
-
+    this.removeEvent = function(){
+        $http({
+            method:'DELETE',
+            url: 'http://localhost:3000/user_events'
+        }).then(function(result){
+            console.log("Deleted data to our server: ", result);
+        });
     }
 
 

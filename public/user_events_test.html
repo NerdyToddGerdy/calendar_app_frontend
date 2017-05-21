@@ -29,7 +29,7 @@
                 <p>{{userEvent.date}}</p>
             </div> -->
             <form ng-show="ctrl.addEventFormToggle" ng-submit="ctrl.submitEventForm()">
-                <input type="hidden" name="user_id" value="1">
+                <input type="text" ng-model="ctrl.formdata.user_id" value="2"><br>
                 <input type="text" ng-model="ctrl.formdata.category" placeholder="Category"/><br>
                 <input type="text" ng-model="ctrl.formdata.user_event_name" placeholder="Event Name"/><br>
                 <input type="date" ng-model="ctrl.formdata.date" placeholder="Event Date"/><br>
