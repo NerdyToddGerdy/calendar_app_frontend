@@ -29,10 +29,10 @@ this.login = function(userPass) {
       console.log('login localstorage: ' + response);
       this.user = response.data.user;
       localStorage.setItem('token', JSON.stringify(response.data.token));
-      localStorage.setItem('my_events_user_id', JSON.stringify(userPass.id));
+      // localStorage.setItem('my_events_user_id', JSON.stringify(userPass.id));
       localStorage.setItem('my_events_username', JSON.stringify(userPass.username));
-      localStorage.setItem('my_events_address', JSON.stringify(userPass.full_address));
-      localStorage.setItem('my_events_is_admin', JSON.stringify(userPass.is_admin));
+      // localStorage.setItem('my_events_address', JSON.stringify(userPass.full_address));
+      // localStorage.setItem('my_events_is_admin', JSON.stringify(userPass.is_admin));
     }.bind(this));
 };
 
@@ -76,11 +76,8 @@ this.login = function(userPass) {
           method: 'DELETE',
           url: this.url + '/users/' + id,
       }).then(function(response){
-        console.log('delete user response:' + response);
+        console.log('delete user response:' + response.data + ' id ' + id);
         this.getUsers();
-        //delete user
-        // return.response.id
-
       }.bind(this));
     };
 
@@ -94,9 +91,13 @@ this.login = function(userPass) {
       location.reload();
     };
 /// ******************************* ///
+this.getToken = function(){
+  return localStorage.getItem('token');
+};
 
+/// ******************************* ///
 this.getLoggedInUserLocalStorage = function(){
-  // localStorage.getItem('token');
+  this.lsToken = localStorage.getItem('token');
   this.lsUsername = localStorage.getItem('my_events_username');
   this.lsUserId = localStorage.getItem('my_events_user_id');
   this.lsAddress = localStorage.getItem('my_events_address');
@@ -105,20 +106,29 @@ this.getLoggedInUserLocalStorage = function(){
 
 /// ******************************* ///
 
-this.updateCurrentUser = function(num){
-  console.log('updateCurrentUser function . . .');
+this.setLocalStorage = function(user){
+  localStorage.setItem('my_events_user_id', JSON.stringify(user.id));
+  localStorage.setItem('my_events_address', JSON.stringify(user.full_address));
+  localStorage.setItem('my_events_is_admin', JSON.stringify(user.is_admin));
+};
 
-this.updateCurrentUser = function(id){
-  console.log('updateCurrentUser function . . .' + id);
+/// ******************************* ///
+this.updateCurrentUser = function(user){
+  console.log('updateCurrentUser function . . .' + user.id);
+  console.log('user' + user.username + 'full name' + user.full_name);
     $http({
     method: 'PUT',
-    url: this.url + '/users/' + id,
-    data: this.update_user_data
+    url: this.url + '/users/' + user.id,
+    data: { user: {
+      username: user.username,
+      full_name: user.full_name,
+      full_address: user.full_address,
+      is_admin: user.is_admin,
+      email_address: user.email_address,
+    }},
   }).then(function(result) {
-    console.log('Data from server: ', result);
-
-  }.bind(this));      //
-
+    console.log('update user data from server: ', result);
+  }.bind(this));
 
 };
 

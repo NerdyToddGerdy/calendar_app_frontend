@@ -1,9 +1,10 @@
 <h1>User's Events</h1>
+<button ng-click="main.resetUsersEvents()">RESET</button>
 <div class="event-list" ng-class="{selected: selected}" ng-repeat="event in main.userEvents ">
    <li  ng-click="main.clickOneEvent(event)">
      <h3>{{event.user_event_name}}</h3>
      <h4>event date: {{event.date}}</h4>
      <h5>start time: {{event.start_time}}</h5>
      <h5>end time: {{event.end_time}}</h5>
-     <label><input type="checkbox" ng-model="selected"></label>
+     <!-- <label><input type="checkbox" ng-model="selected"></label> -->
    </li>
