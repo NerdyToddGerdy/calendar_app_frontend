@@ -1,8 +1,5 @@
 console.log('test app.js loaded');
 angular.module('EventApp').controller('UserController', ['$scope', '$http',function($scope, $http){
-
-
-
   this.user = {};
   this.users = [];
   this.userPass = {};
@@ -25,7 +22,7 @@ this.login = function(userPass) {
       console.log('login localstorage: ' + response);
       this.user = response.data.user;
       localStorage.setItem('token', JSON.stringify(response.data.token));
-      localStorage.setItem('my_events_user_id', JSON.stringify(userPass.id));
+      // localStorage.setItem('my_events_user_id', JSON.stringify(userPass.id));
       localStorage.setItem('my_events_username', JSON.stringify(userPass.username));
       // localStorage.setItem('my_events_address', JSON.stringify(userPass.full_address));
       // localStorage.setItem('my_events_is_admin', JSON.stringify(userPass.is_admin));
@@ -54,6 +51,17 @@ this.login = function(userPass) {
 
 /// ******************************* ///
 
+
+/// ******************************* ///
+    this.deleteUser = function(num){
+        $http({
+          url: this.url + '/users/' + num,
+          method: 'DELETE'
+
+      }).then(function(response){
+        console.log('delete user response:' + response + ' id ' + num);
+        //delete user
+
 /// ******************************* ///
     this.deleteUser = function(id){
         console.log('delete user id ' + id);
@@ -62,7 +70,7 @@ this.login = function(userPass) {
           url: this.url + '/users/' + id,
       }).then(function(response){
         console.log('delete user response:' + response.data + ' id ' + id);
-        // this.getUsers();
+        this.getUsers();
       }.bind(this));
     };
 
@@ -90,6 +98,7 @@ this.getLoggedInUserLocalStorage = function(){
 };
 
 /// ******************************* ///
+
 this.setLocalStorage = function(user){
   localStorage.setItem('my_events_user_id', JSON.stringify(user.id));
   localStorage.setItem('my_events_address', JSON.stringify(user.full_address));
@@ -99,19 +108,21 @@ this.setLocalStorage = function(user){
 /// ******************************* ///
 this.updateCurrentUser = function(user){
   console.log('updateCurrentUser function . . .' + user.id);
+  console.log('user' + user.username + 'full name' + user.full_name);
     $http({
     method: 'PUT',
     url: this.url + '/users/' + user.id,
-    // data: { user: { username: userPass.username, password: userPass.password }},
-    data: {
-      user: {
-      content: user.content
-      }
-    }
+    data: { user: {
+      username: user.username,
+      full_name: user.full_name,
+      full_address: user.full_address,
+      is_admin: user.is_admin,
+      email_address: user.email_address,
+    }},
   }).then(function(result) {
     console.log('update user data from server: ', result);
-
   }.bind(this));
+
 };
 
 // **************************************** //
