@@ -22,12 +22,12 @@
 
 <section class="clsUpdateUser" ng-show="userCtrl.user.id"> <!-- update user -->
   <hr>
-    <form class="form-inline" ng-submit="userCtrl.updateCurrentUser(user)">
-      <div ng-repeat="user in userCtrl.users | filter: { username: userCtrl.user.username }" >
+  <div ng-repeat="user in userCtrl.users | filter: { username: userCtrl.user.username }" >
 
+    <form class="form-inline" ng-submit="userCtrl.updateCurrentUser(user)">
       <h1>Update {{userCtrl.user.username}} | User ID: {{user.id}} | User ID: {{userCtrl.user.id}}</h1>
       <input type="text" ng-model="user.id"><br>
-      <input type="text" name="token" ng-model="userCtrl.getToken();" >
+      <!-- <input type="text" name="token" ng-model="userCtrl.getToken();" > -->
       <br>
   <div class="form-group">
     <label for="userCtrl.regformdata.username">Username</label><br/>
