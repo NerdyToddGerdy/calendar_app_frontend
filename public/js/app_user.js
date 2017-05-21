@@ -1,7 +1,7 @@
 console.log('test app.js loaded');
-var app = angular.module('auth_app', []);
+angular.module('EventApp').controller('UserController', ['$scope', '$http',function($scope, $http){
 
-app.controller('userController', ['$scope','$http', function($scope,$http){
+
 
   this.user = {};
   this.users = [];
@@ -128,10 +128,10 @@ this.updateCurrentUser = function(user){
       // display success
       // this.regformdata={}; //clears form
     }.bind(this));      //
-  }; //end process form
+   //end process form
 // **************************************** //
 
 
-
+};
 
 }]);

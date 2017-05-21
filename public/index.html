@@ -1,84 +1,107 @@
 <!DOCTYPE html>
 <html ng-app="EventApp">
   <head>
-    <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-    <script type="text/javascript" src="./js/app.js"></script>
-    <link rel="stylesheet" href="../css/main.css"/>
-    <title>Will I make it on Time  ||  should I leave early</title>
+     <meta charset="utf-8">
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+     <script
+     src="https://code.jquery.com/jquery-3.2.1.min.js"
+     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+     crossorigin="anonymous"></script>
+     <script type="text/javascript" src="./js/app.js"></script>
+     <script src="js/app_user.js" charset="utf-8"></script>
+     <link rel="stylesheet" href="../css/main.css"/>
+     <title>Will I make it on Time  ||  should I leave early</title>
   </head>
   <body ng-controller="MainController as main">
+     <div ng-controller = UserController as userCtrl>
 
-  <!-- ************************************* -->
-    <header>
-      <h3>Will I make it on Time  ||  should I leave early</h3>
-      <h4 ng-click="main.showLoginModal = !main.showLoginModal">login</h4>
-   </header>
-    <div class="region_options">
-      <div ng-click=" main.toggleRegionA = !main.toggleRegionA" class="region_button" >REGION A</div>
-      <div ng-click=" main.toggleRegionB = !main.toggleRegionB" class="region_button">REGION B</div>
-      <div ng-click=" main.toggleRegionC = !main.toggleRegionC" class="region_button">REGION C</div>
-      <div ng-click="main.toggleRegionD = !main.toggleRegionD" class="region_button">REGION D</div>
-   </div>
-  <div class="container">
-    <!-- ************************************* -->
 
-<main>
-   <ng-include src="'./partials/main.html'"></ng-include>
-</main>
+        <!-- ************************************* -->
+        <header>
+           <h3>Will I make it on Time  ||  should I leave early</h3>
+           <h4 ng-click="main.showLoginModal = !main.showLoginModal">login</h4>
+        </header>
+        <div class="region_options">
+           <div ng-click=" main.toggleRegionA = !main.toggleRegionA" class="region_button" >REGION A</div>
+           <div ng-click=" main.toggleRegionB = !main.toggleRegionB" class="region_button">REGION B</div>
+           <div ng-click=" main.toggleRegionC = !main.toggleRegionC" class="region_button">REGION C</div>
+           <div ng-click="main.toggleRegionD = !main.toggleRegionD" class="region_button">REGION D</div>
+        </div>
+        <div class="container">
+           <!-- ************************************* -->
 
-<!-- ************************************* -->
-<nav>
-   <ng-include src="'./partials/nav.html'"></ng-include>
-</nav>
-<!-- ************************************* -->
+           <main>
+             <ng-include src="'./partials/main.html'"></ng-include>
+          </main>
 
-<aside>
-   <ng-include src="'./partials/aside.html'"></ng-include>
-</aside>
+          <!-- ************************************* -->
+          <nav>
+             <ng-include src="'./partials/nav.html'"></ng-include>
+          </nav>
+          <!-- ************************************* -->
 
-<!-- ************************************* -->
-<div ng-show="main.showLoginModal" class="login-modal">
+          <aside>
+             <ng-include src="'./partials/aside.html'"></ng-include>
+          </aside>
 
-   <div class="inner-modal">
+          <!-- ************************************* -->
+          <div ng-show="main.showLoginModal" class="login-modal">
+             <div class="inner-modal">
+                <h3 id="login-x" ng-click="main.showLoginModal = !main.showLoginModal">X</h3>
+                <h1><span ng-click="main.showLoginForm()">Login</span> / <span ng-click="main.showRegForm()">Register</span></h1>
 
-      <h3 id="login-x" ng-click="main.showLoginModal = !main.showLoginModal">X</h3>
-      <h1><span ng-click="main.showLoginForm()">Login</span> / <span ng-click="main.showRegForm()">Register</span></h1>
+                <!-- THE LOGIN FORM -->
+                <div class="login-form" ng-show="main.loginForm">
+                   <h4>login</h4>
+                   <form ng-submit='userCtrl.logIn()'>
+                      <input mg-model="userCtrl.username" placeholder="User Name">
+                      <input ng-model="userCtrl.password" type="password" placeholder="Password">
+                      <input type="submit" ng-click="userCtrl.resetRegestraionForm()" name="register" value="Rigister"/>
+                   </form>
+                </div>
 
-      <!-- THE LOGIN FORM -->
-      <div class="login-form" ng-show="main.loginForm">
-         <h4>login</h4>
-         <form ng-submit='userCtrl.logIn()'>
-            <input mg-model="userCtrl.username" placeholder="User Name">
-            <input ng-model="userCtrl.password" type="password" placeholder="Password">
-            <input type="submit" ng-click="userCtrl.resetRegestraionForm()" name="register" value="Rigister"/>
-         </form>
-      </div>
+                <!-- THE REGISTRATION FORM -->
+                <div class="reg-form" ng-show="main.regForm">
+                   <h4>registration</h4>
+                   <form ng-submit='userCtrl.register()'>
+                      <label for="userCtrl.regformdata.username">Username:</label><br>
+                      <input ng-model="userCtrl.regformdata.username" placeholder="required" size="30px"/><br>
 
-      <!-- THE REGISTRATION FORM -->
-      <div class="reg-form" ng-show="main.regForm">
-         <h4>registration</h4>
-         <form ng-submit='userCtrl.logIn()'>
-            <input ng-model="userCtrl.username" placeholder="User Name"/>
-            <input ng-model="userCtrl.fullName" placeholder="Full Name"/>
-            <input ng-model="userCtrl.password" placeholder="Password"/>
-            <input ng-model="userCtrl.isAdmin" placeholder="Is an Admin?"/>
-            <input ng-model="userCtrl.username" placeholder="User Name"/>
-            <input ng-model="userCtrl.username" placeholder="User Name"/>
-            <input ng-model="userCtrl.username" placeholder="User Name"/>
+                      <label for="userCtrl.regformdata.password">Password:</label><br>
+                      <input class="register-form-input" type="password" ng-model="userCtrl.regformdata.password" placeholder="required" required size="30px"/><br>
 
-         </form>
-      </div>
-   </div>
-</div>
-<footer>
-   <h4>Footer</h4>
-</footer>
-<!-- ************************************* -->
+                      <label for="userCtrl.regformdata.passwordConfirm">Confirm Password</label><br>
+                      <input class="register-form-input" type="password" ng-model="userCtrl.regformdata.passwordConfirm" placeholder="required" required size="30px"/><br>
+
+                      <label for="userCtrl.regformdata.full_name">Full Name</label><br/>
+                      <input class="register-form-input" type="text"  ng-model="userCtrl.regformdata.full_name" placeholder="required" required size="30px"/><br>
+
+                      <label for="userCtrl.regformdata.full_address">Full Address</label><br/>
+                      <input class="register-form-input" type="text"  ng-model="userCtrl.regformdata.full_address" placeholder="Street, City, State, Zip Code" size="30px"/><br>
+
+                      <label for="userCtrl.regformdata.email_address">Email Address</label><br/>
+                      <input class="register-form-input" type="text"  ng-model="userCtrl.regformdata.email_address" placeholder="optional" size="30px"/><br>
+
+                      <button class="register-form-button btn btn-default" type="submit">Register</button>
+
+
+
+                      <!-- <input ng-model="userCtrl.fullName" placeholder="Full Name"/>
+                      <input ng-model="userCtrl.password" placeholder="Password"/>
+                      <input ng-model="userCtrl.isAdmin" placeholder="Is an Admin?"/>
+                      <input ng-model="userCtrl.username" placeholder="User Name"/>
+                      <input ng-model="userCtrl.username" placeholder="User Name"/>
+                      <input ng-model="userCtrl.username" placeholder="User Name"/> -->
+
+                   </form>
+                </div>
+             </div>
+          </div>
+          <footer>
+             <h4>Footer</h4>
+          </footer>
+          <!-- ************************************* -->
+       </div>
 
   </body>
 </html>
