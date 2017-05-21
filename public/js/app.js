@@ -138,17 +138,19 @@ app.controller('MainController', ['$http', function($http){
          console.log(data);
       };
 
-
+// ********************************************************//
       this.submitEventForm = function(){
          $http({
             method: 'POST',
             url: 'http://localhost:3000/user_events' ,
             data: this.formdata
          }).then(function(result){
-            console.log("Data from our server: ", result);
+            console.log("submitEventForm: ", result);
          });
          console.log(this.formdata);
       };
+
+// ********************************************************//
 
       this.submitUpdateEventForm = function(){
          $http({
