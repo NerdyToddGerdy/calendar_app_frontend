@@ -2,38 +2,106 @@
 <html ng-app="auth_app">
   <head>
     <meta charset="utf-8">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
 
-
-    <script src='../js/app_user.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="../css/style_user.css">
+<!-- <link rel="stylesheet" href="../css/main.css"> -->
+<script src='../js/app_user.js'></script>
     <title>auth test</title>
   </head>
   <body ng-controller="userController as userCtrl">
 
-    <section class="clsRegister">
-        <!-- <div ng-if="userCtrl.showRegistration" id="registration-container"> -->
+<section class="container">
+
+<section class="clsUpdateUser" ng-show="userCtrl.user.id"> <!-- update user -->
+  <hr>
+    <form class="form-inline" ng-submit="userCtrl.updateCurrentUser(user)">
+      <div ng-repeat="user in userCtrl.users | filter: { username: userCtrl.user.username }" >
+
+      <h1>Update {{userCtrl.user.username}} | User ID: {{user.id}} | User ID: {{userCtrl.user.id}}</h1>
+      <input type="text" ng-model="user.id"><br>
+      <input type="text" name="token" ng-model="userCtrl.getToken();" >
+      <br>
+  <div class="form-group">
+    <label for="userCtrl.regformdata.username">Username</label><br/>
+    <input class="register-form-input" type="text" ng-model="user.username" required>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <label for="userCtrl.regformdata.password">Password</label><br/>
+    <input class="register-form-input" type="password" ng-model="user.password" placeholder="required" required>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <label for="userCtrl.regformdata.passwordConfirm">Confirm Password</label><br/>
+    <input class="register-form-input" type="password" ng-model="user.passwordConfirm" placeholder="required" required>
+  </div>
+
+  <br>
+  <div class="form-group">
+    <label for="userCtrl.regformdata.full_name">Full Name</label><br/>
+    <input class="register-form-input" type="text" size="35" ng-model="user.full_name" >
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label for="userCtrl.regformdata.full_address">Full Address</label><br/>
+    <input class="register-form-input" type="text" size="60" ng-model="user.full_address"/>
+  </div>
+  <br>
+
+  <div class="form-group">
+  <label for="userCtrl.regformdata.email_address">Email Address</label><br/>
+  <input class="register-form-input" type="text" size="45" ng-model="user.email_address" value="{{user.email_address}}"/>
+  </div><br/>
+  <br>
+
+  <div class="form-group">
+    <button class="btn btn-default" type="submit">Update User</button>
+    <hr>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-default btn-danger" ng-click="userCtrl.deleteUser(user.id)">Delete User</button>
+    <hr>
+  </div>
+
+  </div> <!-- ng repeat -->
+    </form>
+</section> <!-- update user -->
+
+<section class="clsUpdateUserError">
+  <h4 class="register-error" ng-if="userCtrl.UpdateUserError">{{userCtrl.UpdateUserError}}</h4>
+</section> <!-- update user -->
+
+<!--- #################################################### -->
+<!--- #################################################### -->
+
+    <section class="clsRegister" ng-show="!userCtrl.user.id">
         <hr>
           <form class="form-inline" ng-submit="userCtrl.register()">
             <h3>Register</h3>
             <div class="form-group">
-            <label for="userCtrl.regformdata.username">Username</label><br/>
+            <label for="userCtrl.regformdata.username">Username:</label><br>
             <input class="register-form-input" type="text" ng-model="userCtrl.regformdata.username" placeholder="required" required>
           </div>
-
+          <br>
         </div>
           <div class="form-group">
-          <label for="userCtrl.regformdata.password">Password</label><br/>
+          <label for="userCtrl.regformdata.password">Password:</label><br>
           <input class="register-form-input" type="password" ng-model="userCtrl.regformdata.password" placeholder="required" required>
         </div>
+        <br>
         <div class="form-group">
-          <label for="userCtrl.regformdata.passwordConfirm">Confirm Password</label><br/>
+          <label for="userCtrl.regformdata.passwordConfirm">Confirm Password</label><br>
           <input class="register-form-input" type="password" ng-model="userCtrl.regformdata.passwordConfirm" placeholder="required" required>
         </div>
 
@@ -59,42 +127,58 @@
           </div>
         <!-- </div> -->
           </form>
-      </section>
+      </section> <!-- register -->
     <section class="clsRegisterError">
       <h4 class="register-error" ng-if="userCtrl.loginError">{{userCtrl.loginError}}</h4>
     </section>
 
+    <!--- #################################################### -->
+    <!--- #################################################### -->
 
 
 <hr>
 <!--  -->
+<section class="clsLogin" ng-show="!userCtrl.user.id">
 <form ng-submit="userCtrl.login(userPass)">
   <h2>Login</h2>
+  <div class="form-group">
+    <label for="userPass.username">User Name:</label><br/>
       <input type="text" ng-model="userPass.username" placeholder="username"/>
+    </div>
+      <div class="form-group">
+      <label for="userPass.password">Password"</label><br/>
       <input type="password" ng-model="userPass.password" placeholder="password"/>
-      <input type="submit"/>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-default" type="submit">Login</button>
+    </div>
     </form>
 <hr>
-<hr>
-<h4 ng-click="userCtrl.logout()" ng-show="userCtrl.user.id">Log Out</h4>
-<h4 ng-click="userCtrl.updateCurrentUser(userCtrl.user.id)" ng-show="userCtrl.user.id">update Current User</h4>
+</section> <!-- clsLogin -->
 
-  <p ng-show="userCtrl.user.id">Logged in username: {{ userCtrl.user.username }} </p>
-  <p ng-if="!userCtrl.user.username">Not Logged In</p>
-  <li ng-show="!userCtrl.user.id"><a ng-href="/user_auth_test.html">Sign in</a></li>
-  <li ng-show="userCtrl.user.id"><a ng-click='userCtrl.logout()'>Sign out</a></li>
-<h4>
+<!--- #################################################### -->
+<!--- #################################################### -->
 
-<h4 ng-click="userCtrl.getUsers()" ng-show="userCtrl.user.id">Click to see Users</h4>
+
+<h3 ng-click="userCtrl.logout()" ng-show="userCtrl.user.id">Log Out</h3>
+<h3 ng-click="userCtrl.updateCurrentUser(userCtrl.user.id)" ng-show="userCtrl.user.id">update Current User</h3>
+
+  <h3 ng-show="userCtrl.user.id">Logged in username: {{ userCtrl.user.username }} </h3>
+  <h3 ng-if="!userCtrl.user.username">Not Logged In</h3>
+  <h3 ng-show="!userCtrl.user.id"><a ng-href="/user_auth_test.html">Sign in</a></h3>
+  <h3 ng-show="userCtrl.user.id"><a ng-click='userCtrl.logout()'>Sign out</a></h3>
+
+
+<h1 ng-click="userCtrl.getUsers()" ng-show="userCtrl.user.id">Click to see Users</h1>
 
 <div>{{userCtrl.error}}</div>
 
 <div ng-repeat="user in userCtrl.users">
-  <h3>{{user.username}} | {{user.id}}<span ng-click="userCtrl.deleteUser(user.id)">(delete user)</span>
-    <span ng-click="userCtrl.updateCurrentUser(userCtrl.user.id)" ng-show="userCtrl.user.id">(update Current User)</span>
+  <h3>{{user.username}} | {{user.id}}<span ng-click="userCtrl.deleteUser(user.id)">  (delete user)</span>
+    <!-- <span ng-click="userCtrl.updateCurrentUserNotUsed(userCtrl.user.id)" ng-show="userCtrl.user.id">(update Current User)</span> -->
   </h3>
 </div>
 
-
+</section> <!-- contsiner -->
   </body>
 </html>
