@@ -8,58 +8,58 @@ $(function(){
       $(this).toggleClass('selected');
    });
 });
-   var app = angular.module('EventApp',[]);
-   this.events=[];
-   this.userEvents=[];
-   this.showUserEvents = true;
+var app = angular.module('EventApp',[]);
+this.events=[];
+this.userEvents=[];
+this.showUserEvents = true;
 
 
-   app.controller('MainController', ['$http', function($http){
-      // this.toggleRegionA = true;
-      // this.toggleRegionB = true;
-      // this.toggleRegionC = true;
-      // this.toggleRegionD = true;
-      this.showLoginModal = true;
-      this.events = [];
-      this.formdata = {};
-      this.userEvents = [];
+app.controller('MainController', ['$http', function($http){
+   // this.toggleRegionA = true;
+   // this.toggleRegionB = true;
+   // this.toggleRegionC = true;
+   // this.toggleRegionD = true;
+   this.showLoginModal = true;
+   this.events = [];
+   this.formdata = {};
+   this.userEvents = [];
 
-      // this.openRegion = function(){
-         // this.toggleRegionA = !this.toggleRegionA;
-         $http({
-            method:"GET",
-            url: 'http://localhost:3000/events'
-         }).then(function(response){
-            console.log(response.data);
-            this.events = response.data;
-         }.bind(this));
-      // };
-
-      $http({
-         method: "GET",
-         url: 'http://localhost:3000/user_events'
-      }).then(function(response){
-         console.log(response.data);
-         this.userEvents = response.data;
-         // for (var i = 0; i < response.data.length; i++) {
-         //    console.log(response.data[i]);
-         // }
-         console.log(this.userEvents);
-      }.bind(this));
-   };
+   // this.openRegion = function(){
+   // this.toggleRegionA = !this.toggleRegionA;
+   $http({
+      method:"GET",
+      url: 'http://localhost:3000/events'
+   }).then(function(response){
+      console.log(response.data);
+      this.events = response.data;
+   }.bind(this));
+   // };
 
    $http({
       method: "GET",
       url: 'http://localhost:3000/user_events'
-  }).then(function(response){
-       console.log(response);
+   }).then(function(response){
       console.log(response.data);
       this.userEvents = response.data;
       // for (var i = 0; i < response.data.length; i++) {
       //    console.log(response.data[i]);
       // }
       console.log(this.userEvents);
-   }.bind(this)
+   }.bind(this));
+
+
+   $http({
+      method: "GET",
+      url: 'http://localhost:3000/user_events'
+   }).then(function(response){
+      console.log(response);
+      console.log(response.data);
+      this.userEvents = response.data;
+      // for (var i = 0; i < response.data.length; i++) {
+      //    console.log(response.data[i]);
+      // }
+      console.log(this.userEvents);
+   }.bind(this));
    var controller = this;
    this.showLoginForm = function(){
       console.log('login form');
@@ -126,50 +126,51 @@ $(function(){
          console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
 
 
-   }.bind(this);
-// ___________________USER EVENTS CRUD_______________________________________
+      }.bind(this);
+      // ___________________USER EVENTS CRUD_______________________________________
 
 
-    this.toggleUserEventForm = function(data){
-        console.log(data);
-    }
+      this.toggleUserEventForm = function(data){
+         console.log(data);
+      };
 
-    this.toggleUpdateUserEventForm = function(data){
-        console.log(data);
-    }
+      this.toggleUpdateUserEventForm = function(data){
+         console.log(data);
+      };
 
 
-    this.submitEventForm = function(){
-        $http({
+      this.submitEventForm = function(){
+         $http({
             method: 'POST',
             url: 'http://localhost:3000/user_events' ,
             data: this.formdata
-        }).then(function(result){
+         }).then(function(result){
             console.log("Data from our server: ", result);
-        });
-        console.log(this.formdata);
-    }
+         });
+         console.log(this.formdata);
+      };
 
-    this.submitUpdateEventForm = function(){
-        $http({
+      this.submitUpdateEventForm = function(){
+         $http({
             method: 'PUT',
             url: 'http://localhost:3000/user_events',
             data: this.formdata
-        }).then(function(result){
+         }).then(function(result){
             console.log("Updated data to our server: ", result);
-        });
-        console.log(this.formdata);
-    }
+         });
+         console.log(this.formdata);
+      };
 
 
-    this.removeEvent = function(){
-        $http({
+      this.removeEvent = function(){
+         $http({
             method:'DELETE',
             url: 'http://localhost:3000/user_events'
-        }).then(function(result){
+         }).then(function(result){
             console.log("Deleted data to our server: ", result);
-        });
-    }
+         });
+      };
+   };
 
 
 
