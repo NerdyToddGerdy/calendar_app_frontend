@@ -1,106 +1,107 @@
 <!DOCTYPE html>
 <html ng-app="EventApp">
-    <head>
-        <meta charset="utf-8">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-        <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
+<head>
+   <meta charset="utf-8">
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+   <script
+   src="https://code.jquery.com/jquery-3.2.1.min.js"
+   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+   crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src='../js/app.js'></script>
-        <link rel="stylesheet" href="/css/style_hg.css">
-        <title>User Events</title>
-        <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
-    </head>
-        <body ng-controller="MainController as ctrl">
-        <header>header</header>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <script src='js/app.js'></script>
+   <link rel="stylesheet" href="/css/style_hg.css">
+   <title>User Events</title>
+   <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+</head>
+<body ng-controller="MainController as ctrl">
+   <header>header</header>
 
-<a href="user_auth_test.html">User Auth</a><button ng-click="ctrl.testFireFunction();" size="40">Fire Function</button>
-<!-- __________________________________________CREATE FORM____________________________________________________ -->
-        <h3 ng-click="ctrl.addEventFormToggle = !ctrl.addEventFormToggle">Add Event</h3>
-        <section>
-            <!-- <div ng-repeat="userEvent in ctrl.userEvents" class="userEvents">
-                <h1>{{userEvent.user_event_name}}</h1>
-                <p>{{userEvent.date}}</p>
-            </div> -->
-            <form ng-show="ctrl.addEventFormToggle" ng-submit="ctrl.createUserEvent()">
-                <input type="text" ng-model="ctrl.formdata.user_id" placeholder="ID"><br>
+   <a href="user_auth_test.html">User Auth</a>
+   <button ng-click="ctrl.testFireFunction();" size="40">Fire Function</button>
+   <!-- __________________________________________CREATE FORM____________________________________________________ -->
+   <h3 ng-click="ctrl.addEventFormToggle = !ctrl.addEventFormToggle">Add Event</h3>
+   <section>
+      <!-- <div ng-repeat="userEvent in ctrl.userEvents" class="userEvents">
+      <h1>{{userEvent.user_event_name}}</h1>
+      <p>{{userEvent.date}}</p>
+   </div> -->
+   <form ng-show="ctrl.addEventFormToggle" ng-submit="ctrl.createUserEvent()">
+      <input type="text" ng-model="ctrl.formdata.user_id" placeholder="ID"><br>
 
-                <div class="form-group">
-                <label for="ctrl.formdata.category">Category</label><br/>
-                <!-- <input type="text" ng-model="ctrl.formdata.category" placeholder="Category"/><br> -->
-                <select ng-model="ctrl.formdata.category" ng-attr-size="4" >
-                          <option>Business</option>
-                          <option>Family</option>
-                          <option>Kids</option>
-                          <option>Other Family</option>
-                  </select>
+      <div class="form-group">
+         <label for="ctrl.formdata.category">Category</label><br/>
+         <!-- <input type="text" ng-model="ctrl.formdata.category" placeholder="Category"/><br> -->
+         <select ng-model="ctrl.formdata.category" ng-attr-size="4" >
+            <option>Business</option>
+            <option>Family</option>
+            <option>Kids</option>
+            <option>Other Family</option>
+         </select>
 
-              </div>
-              <div class="form-group">
-              <label for="ctrl.formdata.user_event_name">Event Name</label><br/>
-                <input type="text" ng-model="ctrl.formdata.user_event_name" placeholder="Event Name"/><br>
-                <div class="form-group">
-                <label for="ctrl.formdata.date">Event Date</label><br/>
-                <input type="date" ng-model="ctrl.formdata.date" placeholder="Event Date"/><br>
-                <div class="form-group">
-                <label for="ctrl.formdata.start_time">Start Time:</label><br/>
-                <input type="text" ng-model="ctrl.formdata.start_time" placeholder="Start Time"/><br>
-                <div class="form-group">
-                <label for="ctrl.formdata.end_time">End Time:</label><br/>
-                <input type="text" ng-model="ctrl.formdata.end_time" placeholder="End Time"/><br>
-              </div>
-                <input type="submit" type="submit"/>
+      </div>
+      <div class="form-group">
+         <label for="ctrl.formdata.user_event_name">Event Name</label><br/>
+         <input type="text" ng-model="ctrl.formdata.user_event_name" placeholder="Event Name"/><br>
+         <div class="form-group">
+            <label for="ctrl.formdata.date">Event Date</label><br/>
+            <input type="date" ng-model="ctrl.formdata.date" placeholder="Event Date"/><br>
+            <div class="form-group">
+               <label for="ctrl.formdata.start_time">Start Time:</label><br/>
+               <input type="text" ng-model="ctrl.formdata.start_time" placeholder="Start Time"/><br>
+               <div class="form-group">
+                  <label for="ctrl.formdata.end_time">End Time:</label><br/>
+                  <input type="text" ng-model="ctrl.formdata.end_time" placeholder="End Time"/><br>
+               </div>
+               <input type="submit" type="submit"/>
             </form>
 
-        </section>
+         </section>
 
-<!-- _____________________________DELETE & UPDATE FORM____________________________________________________ -->
+         <!-- _____________________________DELETE & UPDATE FORM____________________________________________________ -->
 
-        <section class="clsListUserEvents">
+         <section class="clsListUserEvents">
             <div ng-repeat="userEvent in ctrl.userEvents" class="userEvents">
-                <p>{{userEvent.user_event_name}} | (ID: {{userEvent.id}})
-                <span ng-click="ctrl.deleteUserEvent(userEvent.id)"> (delete event)</span>
-                <span ng-click="ctrl.updateUserEventFormToggle = !ctrl.updateUserEventFormToggle">Update Event</span></p>
-            </div>
-        </section> <!-- end list user events -->
+               <p>{{userEvent.user_event_name}} | (ID: {{userEvent.id}})
+                  <span ng-click="ctrl.deleteUserEvent(userEvent.id)"> (delete event)</span>
+                  <span ng-click="ctrl.updateUserEventFormToggle = !ctrl.updateUserEventFormToggle">Update Event</span></p>
+               </div>
+            </section> <!-- end list user events -->
 
-  <section class="clsUpdateUserEvents"> <!-- { user_event_id: ctrl.user_event.id } -->
-    <div ng-repeat="user_event in ctrl.userEvents | filter: { user_event_id: 10 }" >
-      <form ng-show="ctrl.updateUserEventFormToggle" ng-submit="ctrl.submitUserEventForm(user_event)">
+            <section class="clsUpdateUserEvents"> <!-- { user_event_id: ctrl.user_event.id } -->
+               <div ng-repeat="user_event in ctrl.userEvents | filter: { user_event_id: 10 }" >
+                  <form ng-show="ctrl.updateUserEventFormToggle" ng-submit="ctrl.submitUserEventForm(user_event)">
 
-          <input type="hidden" ng-model="user_event.user_id">
-          <div class="form-group">
-            <label for="user_event.category">Category:</label><br/>
-            <input type="text" ng-model="cuser_event.category" placeholder="Category"/><br>
-        </div>
-        <div class="form-group">
-          <label for="user_event.user_event_name">Event Name:</label><br/>
-          <input type="text" ng-model="user_event.user_event_name" placeholder="Event Name"/><br>
-        </div>
-        <div class="form-group">
-          <label for="user_event.date">Event Date:</label><br/>
-          <input type="date" ng-model="user_event.date" placeholder="Event Date"/><br>
-        </div>
-        <div class="form-group">
-          <label for="user_event.start_time">Etart Time:</label><br/>
-          <input type="text" ng-model="user_event.start_time" placeholder="Start Time"/><br>
-        </div>
-          <div class="form-group">
-            <label for="user_event.end_time">End Time:</label><br/>
-          <input type="text" ng-model="user_event.end_time" placeholder="End Time"/><br>
-        </div>
-          <div class="form-group">
-          <input type="submit" type="submit"/>
-        </div>
-      </form>
-    </div>
-  </section> <!-- end update user event -->
+                     <input type="hidden" ng-model="user_event.user_id">
+                     <div class="form-group">
+                        <label for="user_event.category">Category:</label><br/>
+                        <input type="text" ng-model="cuser_event.category" placeholder="Category"/><br>
+                     </div>
+                     <div class="form-group">
+                        <label for="user_event.user_event_name">Event Name:</label><br/>
+                        <input type="text" ng-model="user_event.user_event_name" placeholder="Event Name"/><br>
+                     </div>
+                     <div class="form-group">
+                        <label for="user_event.date">Event Date:</label><br/>
+                        <input type="date" ng-model="user_event.date" placeholder="Event Date"/><br>
+                     </div>
+                     <div class="form-group">
+                        <label for="user_event.start_time">Etart Time:</label><br/>
+                        <input type="text" ng-model="user_event.start_time" placeholder="Start Time"/><br>
+                     </div>
+                     <div class="form-group">
+                        <label for="user_event.end_time">End Time:</label><br/>
+                        <input type="text" ng-model="user_event.end_time" placeholder="End Time"/><br>
+                     </div>
+                     <div class="form-group">
+                        <input type="submit" type="submit"/>
+                     </div>
+                  </form>
+               </div>
+            </section> <!-- end update user event -->
 
 
-    </body>
-</html>
+         </body>
+         </html>
