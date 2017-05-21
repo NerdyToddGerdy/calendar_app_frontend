@@ -10,6 +10,7 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
 
 /// ******************************* ///
 
+
 /// ******************************* ///
 
 this.login = function(userPass) {
