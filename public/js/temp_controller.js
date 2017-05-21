@@ -55,6 +55,5 @@ app.controller('EventController', ['$http', function($http) {
 // **************************************** //
 
 //end ctrl
-}
-]);
+}]);
 // *****************

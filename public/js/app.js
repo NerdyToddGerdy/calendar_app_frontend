@@ -1,4 +1,4 @@
-console.log('app.js');
+console.log('events app.js');
 $(function(){
    $('.region_button').on('click',function(){
       $(this).toggleClass('this-region');
@@ -39,12 +39,12 @@ app.controller('MainController', ['$http', function($http){
       method: "GET",
       url: 'http://localhost:3000/user_events'
    }).then(function(response){
-      console.log(response.data);
+      console.log('get user events ',response.data);
       this.userEvents = response.data;
       // for (var i = 0; i < response.data.length; i++) {
       //    console.log(response.data[i]);
       // }
-      console.log(this.userEvents);
+      console.log('user events ' + this.userEvents);
    }.bind(this));
 
 
@@ -58,7 +58,7 @@ app.controller('MainController', ['$http', function($http){
       // for (var i = 0; i < response.data.length; i++) {
       //    console.log(response.data[i]);
       // }
-      console.log(this.userEvents);
+      console.log('user events ',this.userEvents);
    }.bind(this));
    var controller = this;
    this.showLoginForm = function(){
@@ -124,56 +124,67 @@ app.controller('MainController', ['$http', function($http){
          console.log(answerArr, '*********');
          this.events = answerArr;
          console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
-
-
       }.bind(this);
-      // ___________________USER EVENTS CRUD_______________________________________
 
 
+// ___________________USER EVENTS CRUD_______________________________________
       this.toggleUserEventForm = function(data){
-         console.log(data);
+         console.log('toggleUserEventForm ');
       };
-
+// ********************************************************//
       this.toggleUpdateUserEventForm = function(data){
-         console.log(data);
+         console.log('toggleUpdateUserEvent ');
       };
 
 // ********************************************************//
-      this.submitEventForm = function(){
+    this.testFireFunction = function(){
+       console.log('test Fire Function ');
+    };
+
+// ********************************************************//
+      this.createUserEvent = function(){
+        console.log('click submit event');
          $http({
             method: 'POST',
             url: 'http://localhost:3000/user_events' ,
             data: this.formdata
          }).then(function(result){
             console.log("submitEventForm: ", result);
-         });
-         console.log(this.formdata);
-      };
+            // add user event refresh
+          }.bind(this));
+       };
 
 // ********************************************************//
-
-      this.submitUpdateEventForm = function(){
+      this.updateUserEvent = function(user_event){
+        console.log('updateUserEvent function . . .' + user_event.id);
          $http({
             method: 'PUT',
             url: 'http://localhost:3000/user_events',
-            data: this.formdata
-         }).then(function(result){
-            console.log("Updated data to our server: ", result);
-         });
-         console.log(this.formdata);
-      };
-
-
-      this.removeEvent = function(){
+            data: { user_event: {
+               user_event_name: user_event.user_event_name,
+               date: user_event.date,
+               category: user_event.category,
+               user_id: user_event.user_id,
+               start_time: user_event.start_time,
+               end_time: user_event.end_time,
+            }},
+          }).then(function(result) {
+             console.log('update user data from server: ', result);
+          }.bind(this));
+       };
+  // ********************************************************//
+      this.deleteUserEvent = function(id){
+        console.log('delete user id ' + id);
          $http({
             method:'DELETE',
-            url: 'http://localhost:3000/user_events'
+            url: 'http://localhost:3000/user_events/' + id,
          }).then(function(result){
             console.log("Deleted data to our server: ", result);
-         });
+            // refreash events
+        }.bind(this));
       };
-   };
 
+  // ********************************************************//
 
-
+  };
 }]);
