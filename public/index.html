@@ -13,7 +13,7 @@
      <title>Will I make it on Time  ||  should I leave early</title>
   </head>
   <body ng-controller="MainController as main">
-     <div ng-controller = UserController as userCtrl>
+     <div ng-controller = "UserController as userCtrl">
 
 
         <!-- ************************************* -->
@@ -52,12 +52,20 @@
 
                 <!-- THE LOGIN FORM -->
                 <div class="login-form" ng-show="main.loginForm">
-                   <h4>login</h4>
-                   <form ng-submit='userCtrl.logIn()'>
-                      <input mg-model="userCtrl.username" placeholder="User Name">
-                      <input ng-model="userCtrl.password" type="password" placeholder="Password">
-                      <input type="submit" ng-click="userCtrl.resetRegestraionForm()" name="register" value="Rigister"/>
-                   </form>
+                   <form ng-submit="userCtrl.login(userPass)">
+                      <h2>Login</h2>
+                      <div class="form-group">
+                        <label for="userPass.username">User Name:</label><br/>
+                        <input type="text" ng-model="userPass.username" placeholder="username"/>
+                     </div>
+                     <div class="form-group">
+                        <label for="userPass.password">Password"</label><br/>
+                        <input type="password" ng-model="userPass.password" placeholder="password"/>
+                     </div>
+                     <div class="form-group">
+                        <button class="btn btn-default" type="submit">Login</button>
+                     </div>
+                  </form>
                 </div>
 
                 <!-- THE REGISTRATION FORM -->
