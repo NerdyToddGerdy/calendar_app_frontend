@@ -124,7 +124,6 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
       }).then(function(result) {
          console.log('update user data from server: ', result);
       }.bind(this));
-
    };
 
    // **************************************** //
@@ -137,13 +136,13 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
          data: this.regformdata
       }).then(function(result) {
          console.log('register Data from server: ', result);
-
          // display success
          // this.regformdata={}; //clears form
-      }.bind(this));      //
+       }.bind(this));      //
+      };
       //end process form
       // **************************************** //
 
 
-   };
+
 }]);
