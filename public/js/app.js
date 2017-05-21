@@ -19,7 +19,7 @@ app.controller('MainController', ['$http', function($http){
    // this.toggleRegionB = true;
    // this.toggleRegionC = true;
    // this.toggleRegionD = true;
-   this.showLoginModal = true;
+   this.showLoginModal = false;
    this.events = [];
    this.formdata = {};
    this.userEvents = [];
