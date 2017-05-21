@@ -71,7 +71,8 @@ main, aside {
   width: 75%;
   border-radius: 3px;
   margin: 5% auto;
-  text-align: center; }
+  text-align: center;
+  box-shadow: 6px 5px 20px 0px #27262f; }
 
 #login-x {
   text-align: right; }
