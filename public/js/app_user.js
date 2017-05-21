@@ -1,7 +1,11 @@
 console.log('test app.js loaded');
 var app = angular.module('auth_app', []);
 
+
+app.controller('userController', ['$http', function($http){
+
 app.controller('userController', ['$scope','$http', function($scope,$http){
+
 
   this.user = {};
   this.users = [];
@@ -54,6 +58,17 @@ this.login = function(userPass) {
 
 /// ******************************* ///
 
+
+/// ******************************* ///
+    this.deleteUser = function(num){
+        $http({
+          url: this.url + '/users/' + num,
+          method: 'DELETE'
+
+      }).then(function(response){
+        console.log('delete user response:' + response + ' id ' + num);
+        //delete user
+
 /// ******************************* ///
     this.deleteUser = function(id){
         console.log('delete user id ' + id);
@@ -90,6 +105,7 @@ this.getLoggedInUserLocalStorage = function(){
 };
 
 /// ******************************* ///
+
 this.setLocalStorage = function(user){
   localStorage.setItem('my_events_user_id', JSON.stringify(user.id));
   localStorage.setItem('my_events_address', JSON.stringify(user.full_address));
@@ -112,8 +128,8 @@ this.updateCurrentUser = function(user){
     }},
   }).then(function(result) {
     console.log('update user data from server: ', result);
-
   }.bind(this));
+
 };
 
 // **************************************** //
