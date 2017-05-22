@@ -13,7 +13,6 @@ this.events=[];
 this.userEvents=[];
 this.showUserEvents = true;
 
-
 app.controller('MainController', ['$http', function($http){
    // this.toggleRegionA = true;
    // this.toggleRegionB = true;
@@ -23,6 +22,7 @@ app.controller('MainController', ['$http', function($http){
    this.events = [];
    this.formdata = {};
    this.userEvents = [];
+
 
    // this.openRegion = function(){
    // this.toggleRegionA = !this.toggleRegionA;
@@ -139,16 +139,27 @@ app.controller('MainController', ['$http', function($http){
 
 // ********************************************************//
     this.testFireFunction = function(){
-       console.log('test Fire Function ');
+       //console.log('test Fire Function ');
+       this.currentUserId = localStorage.getItem("my_events_user_id");
+       console.log('test Fire Function ', this.currentUserId );
     };
 
-// ********************************************************//
+// ********************************************************// this.formdata
       this.createUserEvent = function(){
         console.log('click submit event');
+
          $http({
             method: 'POST',
             url: 'http://localhost:3000/user_events' ,
-            data: this.formdata
+            data: {
+                user_event: {
+               user_event_name: this.formdata.user_event_name,
+               date: this.formdata.date,
+               category: this.formdata.category,
+               user_id: parseInt(this.currentUserId),
+               start_time: this.formdata.start_time,
+               end_time: this.formdata.end_time,
+            }},
          }).then(function(result){
             console.log("submitEventForm: ", result);
             // add user event refresh
