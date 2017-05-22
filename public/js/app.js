@@ -21,9 +21,9 @@ this.getDomainName = function(){
    var currenturl = window.location.hostname;
    console.log("" + myurl, currenturl);
    if (myurl != currenturl) {
-      url2 = "http://localhost:3000";
-   } else {
       url2 = "https://calendar-app-api.herokuapp.com";
+   } else {
+      url2 = "http://localhost:3000";
    }
 };
 this.getDomainName();
@@ -196,7 +196,7 @@ app.controller('MainController', ['$http', function($http){
           }).then(function(result) {
              console.log('update user data from server: ', result);
 
-             
+
           }.bind(this));
        };
   // ********************************************************//
