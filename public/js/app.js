@@ -14,19 +14,21 @@ this.events=[];
 this.userEvents=[];
 this.showUserEvents = true;
 
-app.controller('MainController', ['$http', function($http){
-this.url = ""
+var url2 = "";
 
-   this.getDomainName = function(){
-      var myurl = "https://calendar-app-api.herokuapp.com";
-      var currenturl = window.location.hostname;
-      console.log(url + "" + myurl);
-      if (myurl != currenturl) {
-         this.url = "http://localhost:3000";
-      } else {
-         this.url = "https://calendar-app-api.herokuapp.com";
-      }
-   };
+this.getDomainName = function(){
+   var myurl = "https://calendar-app-api.herokuapp.com";
+   var currenturl = window.location.hostname;
+   console.log("" + myurl, currenturl);
+   if (myurl != currenturl) {
+      url2 = "http://localhost:3000";
+   } else {
+      url2 = "https://calendar-app-api.herokuapp.com";
+   }
+};
+this.getDomainName();
+console.log(url2);
+app.controller('MainController', ['$http', function($http){
    // this.toggleRegionA = true;
    // this.toggleRegionB = true;
    // this.toggleRegionC = true;
@@ -37,12 +39,12 @@ this.url = ""
    this.userEvents = [];
    this.addEventFormToggle = false;
    this.user_id=0;
+   this.url = "http://localhost:3000";
+   console.log(this.url);
 
-   // this.openRegion = function(){
-   // this.toggleRegionA = !this.toggleRegionA;
    $http({
       method:"GET",
-      url: this.url + '/events'
+      url: this.url+ '/events'
    }).then(function(response){
       console.log(response.data);
       this.events = response.data;
@@ -61,19 +63,6 @@ this.url = ""
       console.log('user events ' + this.userEvents);
    }.bind(this));
 
-
-   $http({
-      method: "GET",
-      url: this.url + '/user_events'
-   }).then(function(response){
-      console.log(response);
-      console.log(response.data);
-      this.userEvents = response.data;
-      // for (var i = 0; i < response.data.length; i++) {
-      //    console.log(response.data[i]);
-      // }
-      console.log('user events ',this.userEvents);
-   }.bind(this));
    var controller = this;
    this.showLoginForm = function(){
       console.log('login form');
