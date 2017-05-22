@@ -22,6 +22,7 @@ app.controller('MainController', ['$http', function($http){
    this.events = [];
    this.formdata = {};
    this.userEvents = [];
+   this.addEventFormToggle = false;
 
 
    // this.openRegion = function(){
@@ -72,24 +73,22 @@ app.controller('MainController', ['$http', function($http){
       this.regForm = true;
    };
 
-   this.clickOneEvent = function(event){
-      // this.openRegion();
-      this.resetUsersEvents = function(){
-         console.log(this.events);
-         this.events = [];
-         $('.event-list').on('click', function(){
-            $(this).toggleClass('selected');
-         });
-         console.log(this.events);
-         $http({
-            method:"GET",
-            url: 'http://localhost:3000/events'
-         }).then(function(response){
-            console.log(response.data);
-            this.events = response.data;
-         }.bind(this));
-         console.log(this.events);
-      };
+   this.resetUsersEvents = function(){
+      console.log(this.events);
+      console.log('resetUsersEvents');
+      this.events = [];
+      $('.event-list').on('click', function(){
+         $(this).toggleClass('selected');
+      });
+      console.log(this.events);
+      $http({
+         method:"GET",
+         url: 'http://localhost:3000/events'
+      }).then(function(response){
+         console.log(response.data);
+         this.events = response.data;
+      }.bind(this));
+      console.log(this.events);
    };
       this.showLoginModal = false;
       this.loginForm = true;
