@@ -145,22 +145,26 @@ app.controller('MainController', ['$http', function($http){
 
 // ********************************************************// this.formdata
       this.createUserEvent = function(currentUser){
+        this.currentUserId = localStorage.getItem("my_events_user_id");
         console.log('click submit event');
         console.log(currentUser);
          $http({
             method: 'POST',
             url: 'http://localhost:3000/user_events' ,
-            data: {user: currentUser ,
-                user_event: {
+            headers: {
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            },
+            data: {
                user_event_name: this.formdata.user_event_name,
                date: this.formdata.date,
                category: this.formdata.category,
                user_id: parseInt(this.currentUserId),
                start_time: this.formdata.start_time,
                end_time: this.formdata.end_time,
-            }}
+            }
          }).then(function(result){
             console.log("submitEventForm: ", result);
+
             // add user event refresh
           }.bind(this));
        };
@@ -171,6 +175,9 @@ app.controller('MainController', ['$http', function($http){
          $http({
             method: 'PUT',
             url: 'http://localhost:3000/user_events',
+            headers: {
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            },
             data: { user_event: {
                user_event_name: user_event.user_event_name,
                date: user_event.date,
@@ -189,8 +196,12 @@ app.controller('MainController', ['$http', function($http){
          $http({
             method:'DELETE',
             url: 'http://localhost:3000/user_events/' + id,
+            headers: {
+              Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+              },
          }).then(function(result){
             console.log("Deleted data to our server: ", result);
+            
             // refreash events
         }.bind(this));
       };
