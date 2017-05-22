@@ -1,4 +1,5 @@
 console.log('events app.js');
+
 $(function(){
    $('.region_button').on('click',function(){
       $(this).toggleClass('this-region');
@@ -14,6 +15,18 @@ this.userEvents=[];
 this.showUserEvents = true;
 
 app.controller('MainController', ['$http', function($http){
+this.url = ""
+
+   this.getDomainName = function(){
+      var myurl = "https://calendar-app-api.herokuapp.com";
+      var currenturl = window.location.hostname;
+      console.log(url + "" + myurl);
+      if (myurl != currenturl) {
+         this.url = "http://localhost:3000";
+      } else {
+         this.url = "https://calendar-app-api.herokuapp.com";
+      }
+   };
    // this.toggleRegionA = true;
    // this.toggleRegionB = true;
    // this.toggleRegionC = true;
@@ -22,12 +35,14 @@ app.controller('MainController', ['$http', function($http){
    this.events = [];
    this.formdata = {};
    this.userEvents = [];
+   this.addEventFormToggle = false;
+   this.user_id=0;
 
    // this.openRegion = function(){
    // this.toggleRegionA = !this.toggleRegionA;
    $http({
       method:"GET",
-      url: 'http://localhost:3000/users'
+      url: this.url + '/events'
    }).then(function(response){
       console.log(response.data);
       this.events = response.data;
@@ -36,7 +51,7 @@ app.controller('MainController', ['$http', function($http){
 
    $http({
       method: "GET",
-      url: 'http://localhost:3000/user_events/'
+      url: this.url + '/user_events'
    }).then(function(response){
       console.log('get user events ',response.data);
       this.userEvents = response.data;
@@ -49,7 +64,7 @@ app.controller('MainController', ['$http', function($http){
 
    $http({
       method: "GET",
-      url: 'http://localhost:3000/user_events/'
+      url: this.url + '/user_events'
    }).then(function(response){
       console.log(response);
       console.log(response.data);
@@ -71,6 +86,7 @@ app.controller('MainController', ['$http', function($http){
       this.regForm = true;
    };
 
+
    this.clickOneEvent = function(event){
       // this.openRegion();
       this.resetUsersEvents = function(){
@@ -89,11 +105,12 @@ app.controller('MainController', ['$http', function($http){
          }.bind(this));
          console.log(this.events);
       };
+
    };
       this.showLoginModal = false;
       this.loginForm = true;
       this.regForm = false;
-      var controller = this;
+      controller = this;
       this.showLoginForm = function(){
          console.log('login form');
          this.loginForm = true;
@@ -109,21 +126,21 @@ app.controller('MainController', ['$http', function($http){
          // this.openRegion();
          var controller = this;
          console.log('clicking an event: ', event);
-         console.log(this.events);
+         // console.log(this.events);
          this.myEvent = event;
          var theirArray = controller.events;
          var answerArr = [];
          for (var i = 0; i < theirArray.length; i++) {
-            console.log(this.myEvent.date, "===", theirArray[i].date);
+            // console.log(this.myEvent.date, "===", theirArray[i].date);
 
             // if my events date is same as data in system.... show only matching dates
             if (this.myEvent.date == theirArray[i].date){
                answerArr.push(theirArray[i]);
             }
          }
-         console.log(answerArr, '*********');
+         // console.log(answerArr, '*********');
          this.events = answerArr;
-         console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
+         // console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
       }.bind(this);
 
 
@@ -146,10 +163,13 @@ app.controller('MainController', ['$http', function($http){
 // ********************************************************// this.formdata
       this.createUserEvent = function(){
         console.log('click submit event');
-
+        console.log(localStorage.getItem("my_events_user_id"));
          $http({
             method: 'POST',
-            url: 'http://localhost:3000/user_events/' ,
+            url: this.url + '/user_events' ,
+            headers: {
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            },
             data: {
                 user_event: {
                user_event_name: this.formdata.user_event_name,
@@ -166,31 +186,38 @@ app.controller('MainController', ['$http', function($http){
        };
 
 // ********************************************************//
-      this.updateUserEvent = function(user_event){
-        console.log('updateUserEvent function . . .' + user_event.id);
+      this.updateUserEvent = function(user_event, event){
+        console.log('updateUserEvent function . . .' , user_event, event.id);
          $http({
             method: 'PUT',
-            url: 'http://localhost:3000/user_events/',
-            data: { user_event: {
+            url: this.url + '/user_events/' + event.id,
+            headers: {
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            },
+            data: {
                user_event_name: user_event.user_event_name,
                date: user_event.date,
                category: user_event.category,
                user_id: user_event.user_id,
                start_time: user_event.start_time,
-               end_time: user_event.end_time,
-            }},
+               end_time: user_event.end_time
+            },
           }).then(function(result) {
              console.log('update user data from server: ', result);
           }.bind(this));
        };
   // ********************************************************//
-      this.deleteUserEvent = function(id){
-        console.log('delete user id ' + id);
+      this.deleteUserEvent = function(thisEvent){
+        console.log('delete user id ', thisEvent.id);
          $http({
             method:'DELETE',
-            url: 'http://localhost:3000/user_events/' + id,
+            url: this.url + '/user_events/' + thisEvent.id,
+            headers: {
+              Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+              },
          }).then(function(result){
             console.log("Deleted data to our server: ", result);
+
             // refreash events
         }.bind(this));
       };
