@@ -1,8 +1,26 @@
+
+UserEvent.create([
+    {user_event_name: "picnic", user_id: 1, user_event_date: "03/03/2017", start_time: "3:30", end_time: "4:40", category: "fun"},
+    {user_event_name: "soccer", user_id: 2, user_event_date: "03/20/2017", start_time: "12:30", end_time: "1:40", category: "fun"}
+    ])
+
+
+Event.create(event_name: "Giants Football Game", region_id: 1, date: "07/03/2017", start_time: "5:00", end_time: "6:00", category: "business", regions: "NY", traffic: 100)
+
+
+        {event_name: "rockSteady", region_id: 2, event_date: "05/05/2017", start_time: "6:00", end_time: "9:00", category: "business", regions: "Q", traffic: 200}
+
+
+
+UserEvent.create(user_event_name: "Trip to Zoo", user_id: 1, date: "07/03/2017", start_time: "3:30", end_time: "4:40", category: "fun")
+
+
+User.create(username: "jimbo1", password:"12345678")
+
 var port = process.env.PORT || 3000;
 var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/beers'
 
 https://github.com/ga-students/wdi-remote-hopper/blob/e801634a4f31a1dc13afd3a39814941477559b3f/unit_2/w07d01/instructor_notes/heroku.md
-
 
 
 JWT_SECRET=!8675309!12345678!
@@ -11,3 +29,17 @@ JWT_ISSUER=jim_doughty
 var URI = process.env.URI || http://localhost:3000;
 
 this.url = 'http://localhost:3000';
+
+https://www.npmjs.com/package/dotenv
+
+this.getDomainName = function(){
+  var myurl = "domain.heroku.com";
+  var currenturl = window.location.hostname;
+
+  console.log(url + '' + myurl);
+  if(myurl != currenturl){
+    url = "http://localhost"
+    }else{
+    url = "http://domain.heroku.com"
+    }
+  };

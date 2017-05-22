@@ -40,6 +40,7 @@ app.controller('MainController', ['$http', function($http){
    this.addEventFormToggle = false;
    this.user_id=0;
    this.url = "https://calendar-app-api.herokuapp.com";
+  //  this.url = "https://localhost";
    console.log(this.url);
 
    $http({
