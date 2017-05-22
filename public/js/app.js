@@ -195,6 +195,8 @@ app.controller('MainController', ['$http', function($http){
             },
           }).then(function(result) {
              console.log('update user data from server: ', result);
+
+             
           }.bind(this));
        };
   // ********************************************************//
