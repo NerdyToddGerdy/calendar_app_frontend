@@ -1,4 +1,5 @@
 console.log('events app.js');
+
 $(function(){
    $('.region_button').on('click',function(){
       $(this).toggleClass('this-region');
@@ -14,6 +15,18 @@ this.userEvents=[];
 this.showUserEvents = true;
 
 app.controller('MainController', ['$http', function($http){
+this.url = ""
+
+   this.getDomainName = function(){
+      var myurl = "https://calendar-app-api.herokuapp.com";
+      var currenturl = window.location.hostname;
+      console.log(url + "" + myurl);
+      if (myurl != currenturl) {
+         this.url = "http://localhost:3000";
+      } else {
+         this.url = "https://calendar-app-api.herokuapp.com";
+      }
+   };
    // this.toggleRegionA = true;
    // this.toggleRegionB = true;
    // this.toggleRegionC = true;
@@ -29,7 +42,7 @@ app.controller('MainController', ['$http', function($http){
    // this.toggleRegionA = !this.toggleRegionA;
    $http({
       method:"GET",
-      url: 'http://localhost:3000/events'
+      url: this.url + '/events'
    }).then(function(response){
       console.log(response.data);
       this.events = response.data;
@@ -38,7 +51,7 @@ app.controller('MainController', ['$http', function($http){
 
    $http({
       method: "GET",
-      url: 'http://localhost:3000/user_events'
+      url: this.url + '/user_events'
    }).then(function(response){
       console.log('get user events ',response.data);
       this.userEvents = response.data;
@@ -51,7 +64,7 @@ app.controller('MainController', ['$http', function($http){
 
    $http({
       method: "GET",
-      url: 'http://localhost:3000/user_events'
+      url: this.url + '/user_events'
    }).then(function(response){
       console.log(response);
       console.log(response.data);
@@ -83,7 +96,7 @@ app.controller('MainController', ['$http', function($http){
       console.log(this.events);
       $http({
          method:"GET",
-         url: 'http://localhost:3000/events'
+         url: this.url + '/events'
       }).then(function(response){
          console.log(response.data);
          this.events = response.data;
@@ -150,7 +163,7 @@ app.controller('MainController', ['$http', function($http){
         console.log(localStorage.getItem("my_events_user_id"));
          $http({
             method: 'POST',
-            url: 'http://localhost:3000/user_events' ,
+            url: this.url + '/user_events' ,
             headers: {
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
             },
@@ -174,7 +187,7 @@ app.controller('MainController', ['$http', function($http){
         console.log('updateUserEvent function . . .' , user_event, event.id);
          $http({
             method: 'PUT',
-            url: 'http://localhost:3000/user_events/' + event.id,
+            url: this.url + '/user_events/' + event.id,
             headers: {
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
             },
@@ -195,7 +208,7 @@ app.controller('MainController', ['$http', function($http){
         console.log('delete user id ', thisEvent.id);
          $http({
             method:'DELETE',
-            url: 'http://localhost:3000/user_events/' + thisEvent.id,
+            url: this.url + '/user_events/' + thisEvent.id,
             headers: {
               Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
               },
