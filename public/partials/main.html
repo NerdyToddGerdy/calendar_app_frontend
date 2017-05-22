@@ -4,7 +4,7 @@
    <li  >
       <div ng-click="main.clickOneEvent(event)">
      <h3>{{event.user_event_name}}</h3>
-     <h4>event date: {{event.date |date:format:shortDate}}</h4>
+     <h4>event date: {{event.user_event_date |date:format:shortDate}}</h4>
      <h5>start time: {{event.start_time | date:'h:mma'}}</h5>
      <h5>end time: {{event.end_time | date:'h:mma'}}</h5>
      <h5>user_id {{event.user_id}}</h5>
