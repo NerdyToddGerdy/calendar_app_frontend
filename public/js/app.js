@@ -34,6 +34,7 @@ app.controller('MainController', ['$http', function($http){
    // this.toggleRegionC = true;
    // this.toggleRegionD = true;
    this.showLoginModal = false;
+   this.user_event_list = [];
    this.events = [];
    this.formdata = {};
    this.userEvents = [];
@@ -42,6 +43,29 @@ app.controller('MainController', ['$http', function($http){
    this.url = "https://calendar-app-api.herokuapp.com";
   //  this.url = "https://localhost";
    console.log(this.url);
+
+   ///*****************************************************////
+   this.getUserEventList = function(id){
+      $http({
+         url: this.url + '/user_events/' + id,
+         method: 'GET',
+         headers:{
+            Authorization: 'Bearer ' +
+            JSON.parse(localStorage.getItem('token'))
+         }
+      }).then(function(response){
+         console.log('get user event response:' + response);
+         if (response.data.status == 401) {
+            this.error = "Unauthorized (41)";
+         } else {
+            console.log('refresh user event list');
+            this.user_event_list = response.data;
+         }
+      }.bind(this));
+   };
+///*****************************************************////
+
+
 
    $http({
       method:"GET",
