@@ -6,7 +6,7 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
    this.userPass = {};
    this.update_user_data = {};
    this.test = "hi we love angular";
-   this.url = 'http://localhost:3000';
+   this.url = 'http://localhost:3000/';
    //this.update_user_data
 
    /// ******************************* ///
