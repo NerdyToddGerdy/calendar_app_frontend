@@ -117,8 +117,8 @@
                   </form>
                </div>
             </section> <!-- end update user event -->
-
-            <form ng-show="main.toggleUpdateUserEvent"  ng-submit="main.updateUserEvent(user_event, event)">
+<!-- ng-show="main.toggleUpdateUserEvent"  -->
+            <form  ng-submit="main.updateUserEvent(user_event, event)">
                 <input type="hidden" ng-model="user_event.user_id">
                   <div class="form-group">
                     <label for="user_event.category">Category:</label><br/>
