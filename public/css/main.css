@@ -6,7 +6,8 @@ body {
   font-family: Verdana, Geneva, sans-serif; }
 
 .user-event-x {
-  text-align: right; }
+  text-align: right;
+  margin: 0; }
 
 .event-list {
   border: #fed89d 5px ridge;

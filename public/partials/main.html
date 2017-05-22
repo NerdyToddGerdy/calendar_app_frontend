@@ -1,12 +1,18 @@
 <h1>User's Events</h1>
 <button ng-click="main.resetUsersEvents()">RESET</button>
-<div class="event-list" ng-class="{selected: selected}" ng-repeat="event in main.userEvents ">
+<div class="event-list" ng-class="{selected: selected}" ng-repeat="event in main.userEvents | filter: {user_id: userCtrl.current_user_id} "><!-- FIXME: add a filter user Id thingy -->
    <li  ng-click="main.clickOneEvent(event)">
       <h5 class="user-event-x" ng-click="main.deleteUserEvent(event)">X</h5>
      <h3>{{event.user_event_name}}</h3>
      <h4>event date: {{event.date}}</h4>
      <h5>start time: {{event.start_time}}</h5>
      <h5>end time: {{event.end_time}}</h5>
-     <a href="#" ng-click="main.updateUserEvent(event)">Update</a>
+     <h5>user_id {{event.user_id}}</h5>
+
+     <a href="#" ng-click=" main.toggleUpdateUserEvent = !main.toggleUpdateUserEvent">Update</a>
+
+     <form ng-show="main.toggleUpdateUserEvent">
+
+     </form>
      <!-- <label><input type="checkbox" ng-model="selected"></label> -->
    </li>

@@ -1,13 +1,57 @@
-<h1>nav</h1>
-    <!-- <form ng-submit="ctrl.addUserEventForm()"> -->
+    <!-- <form ng-submit="main.addUserEventForm()"> -->
 <h3 ng-click="main.addEventFormToggle = !main.addEventFormToggle">Add Event</h3>
-    <form ng-show="main.addEventFormToggle" ng-submit="main.eventForm()">
-        <input type="text" ng-model="ctrl.formdata.category" placeholder="Category"/><br>
-        <input type="text" ng-model="ctrl.formdata.user_event_name" placeholder="Event Name"/><br>
-        <input type="date" ng-model="ctrl.formdata.date" placeholder="Event Date"/><br>
-        <input type="text" ng-model="ctrl.formdata.start_time" placeholder="Start Time"/><br>
-        <input type="text" ng-model="ctrl.formdata.end_time" placeholder="End Time"/><br>
+
+<form ng-show="main.addEventFormToggle" ng-submit="main.createUserEvent(usermain.user)">
+   <div class="form-group">
+      <label for="main.formdata.user_event_name">Event Name</label><br/>
+      <input type="text" ng-model="main.formdata.user_event_name" placeholder="Event Name"/><br>
+   </div>
+   <div class="form-group">
+      <label for="main.formdata.category">Category</label><br/>
+   </div>
+   <div class="">
+      <select ng-model="main.formdata.category" ng-attr-size="4" >
+         <option>Business</option>
+         <option>Family</option>
+         <option>Kids</option>
+         <option>Other Family</option>
+      </select>
+   </div>
+   <div class="form-group">
+      <label for="main.formdata.date">Event Date</label><br/>
+      <input type="date" ng-model="main.formdata.date" placeholder="Event Date"/><br>
+   </div>
+   <div class="form-group">
+      <label for="main.formdata.start_time">Start Time:</label><br/>
+      <input type="text" ng-model="main.formdata.start_time" placeholder="Start Time"/><br>
+   </div>
+   <div class="form-group">
+      <label for="main.formdata.end_time">End Time:</label><br/>
+      <input type="text" ng-model="main.formdata.end_time" placeholder="End Time"/><br>
+   </div>
+   <input type="submit" type="submit"/>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <form ng-show="main.addEventFormToggle" ng-submit="main.eventForm()">
+        <input type="text" ng-model="main.formdata.category" placeholder="Category"/><br>
+        <input type="text" ng-model="main.formdata.user_event_name" placeholder="Event Name"/><br>
+        <input type="date" ng-model="main.formdata.date" placeholder="Event Date"/><br>
+        <input type="text" ng-model="main.formdata.start_time" placeholder="Start Time"/><br>
+        <input type="text" ng-model="main.formdata.end_time" placeholder="End Time"/><br>
         <input type="submit" type="submit"/>
-    </form>
-<h3>Update Event</h3>
-<h3>Delete Event</h3>
+    </form> -->

@@ -23,7 +23,7 @@ app.controller('MainController', ['$http', function($http){
    this.formdata = {};
    this.userEvents = [];
    this.addEventFormToggle = false;
-
+   this.user_id=0;
 
    // this.openRegion = function(){
    // this.toggleRegionA = !this.toggleRegionA;
@@ -147,7 +147,7 @@ app.controller('MainController', ['$http', function($http){
       this.createUserEvent = function(currentUser){
         this.currentUserId = localStorage.getItem("my_events_user_id");
         console.log('click submit event');
-        console.log(currentUser);
+        console.log(localStorage.getItem("my_events_user_id"));
          $http({
             method: 'POST',
             url: 'http://localhost:3000/user_events' ,
@@ -191,11 +191,11 @@ app.controller('MainController', ['$http', function($http){
           }.bind(this));
        };
   // ********************************************************//
-      this.deleteUserEvent = function(id){
-        console.log('delete user id ' + id);
+      this.deleteUserEvent = function(thisEvent){
+        console.log('delete user id ', thisEvent.id);
          $http({
             method:'DELETE',
-            url: 'http://localhost:3000/user_events/' + id,
+            url: 'http://localhost:3000/user_events/' + thisEvent.id,
             headers: {
               Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
               },
