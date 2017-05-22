@@ -1,8 +1,7 @@
 <h1>User's Events</h1>
 <button ng-click="main.resetUsersEvents()">RESET</button>
-<div class="event-list" ng-class="{selected: selected}" ng-repeat="event in main.userEvents | filter: {user_id: userCtrl.user.id}"><!-- FIXME: add a filter user Id thingy -->
+<div class="event-list" ng-class="{selected: selected}" ng-repeat="event in main.userEvents | filter: {user_id: userCtrl.user.id}">
    <li  >
-      <h5 class="user-event-x" ng-click="main.deleteUserEvent(event)">X</h5>
       <div ng-click="main.clickOneEvent(event)">
      <h3>{{event.user_event_name}}</h3>
      <h4>event date: {{event.date |date:format:shortDate}}</h4>
@@ -11,7 +10,8 @@
      <h5>user_id {{event.user_id}}</h5>
   </div>
 
-     <a href="#" ng-click=" main.toggleUpdateUserEvent = !main.toggleUpdateUserEvent">Update</a>
+     <a href="#" ng-click=" main.toggleUpdateUserEvent = !main.toggleUpdateUserEvent">Update</a><br>
+     <a href="#" class="user-event-x" ng-click="main.deleteUserEvent(event)">Delete</a>
 
      <form ng-show="main.toggleUpdateUserEvent"  ng-submit="main.updateUserEvent(user_event, event)">
          <input type="hidden" ng-model="user_event.user_id">

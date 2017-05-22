@@ -10,7 +10,7 @@
      <script type="text/javascript" src="./js/app.js"></script>
      <script src="js/app_user.js" charset="utf-8"></script>
      <link rel="stylesheet" href="../css/main.css"/>
-     <title>Will I make it on Time  ||  should I leave early</title>
+     <title>Should I leave early</title>
   </head>
   <body ng-controller="MainController as main">
      <div ng-controller = "UserController as userCtrl">
@@ -18,9 +18,10 @@
 
         <!-- ************************************* -->
         <header>
-           <h3>Will I make it on Time  ||  should I leave early</h3>
-           <h4 ng-click="main.showLoginModal = !main.showLoginModal">login</h4>
-           {{userCtrl.user.username}}
+           <h3>Will I make it on Time</h3>
+           <h4 ng-click="main.showLoginModal = !main.showLoginModal" ng-hide="userCtrl.user.username">login</h4>
+           <h4 ng-show="userCtrl.user.username">Welcome, {{userCtrl.user.full_name}} </h4>
+           <h4 ng-show="userCtrl.user.username" ng-click="userCtrl.logout()">Logout</h4>
         </header>
         <div class="region_options">
            <div ng-click=" main.toggleRegionA = !main.toggleRegionA" class="region_button" >REGION A</div>
@@ -53,14 +54,14 @@
 
                 <!-- THE LOGIN FORM -->
                 <div class="login-form" ng-show="main.loginForm">
-                   <form ng-submit="userCtrl.login(userPass)">
+                   <form ng-submit="userCtrl.login(userPass); main.showLoginModal = !main.showLoginModal">
                       <h2>Login</h2>
                       <div class="form-group">
                         <label for="userPass.username">User Name:</label><br/>
                         <input type="text" ng-model="userPass.username" placeholder="username"/>
                      </div>
                      <div class="form-group">
-                        <label for="userPass.password">Password"</label><br/>
+                        <label for="userPass.password">Password:</label><br/>
                         <input type="password" ng-model="userPass.password" placeholder="password"/>
                      </div>
                      <div class="form-group">
@@ -72,7 +73,7 @@
                 <!-- THE REGISTRATION FORM -->
                 <div class="reg-form" ng-show="main.regForm">
                    <h4>registration</h4>
-                   <form ng-submit='userCtrl.register()'>
+                   <form ng-submit='userCtrl.register(); main.showLoginModal = !main.showLoginModal'>
                       <label for="userCtrl.regformdata.username">Username:</label><br>
                       <input ng-model="userCtrl.regformdata.username" placeholder="required" size="30px"/><br>
 
@@ -92,18 +93,10 @@
                       <input class="register-form-input" type="text"  ng-model="userCtrl.regformdata.email_address" placeholder="optional" size="30px"/><br>
 
                       <button class="register-form-button btn btn-default" type="submit">Register</button>
-
-
-
-                      <!-- <input ng-model="userCtrl.fullName" placeholder="Full Name"/>
-                      <input ng-model="userCtrl.password" placeholder="Password"/>
-                      <input ng-model="userCtrl.isAdmin" placeholder="Is an Admin?"/>
-                      <input ng-model="userCtrl.username" placeholder="User Name"/>
-                      <input ng-model="userCtrl.username" placeholder="User Name"/>
-                      <input ng-model="userCtrl.username" placeholder="User Name"/> -->
-
                    </form>
                 </div>
+                <h3>“Will I make it on time?”</h3>
+                <p id="intro">Our site is designed to help you determine if there are other events going on in your area. Create your events then compare with events in the regions that may conflict with your events.</p>
              </div>
           </div>
           <!-- <footer>
