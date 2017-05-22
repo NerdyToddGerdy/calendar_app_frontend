@@ -1,6 +1,7 @@
 console.log('test app.js loaded');
 angular.module('EventApp').controller('UserController', ['$scope', '$http',function($scope, $http){
    this.user = {};
+   this.user.id = 0;
    this.current_user_id = {};
    this.users = [];
    this.userPass = {};

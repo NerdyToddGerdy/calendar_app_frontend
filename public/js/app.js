@@ -121,9 +121,9 @@ app.controller('MainController', ['$http', function($http){
                answerArr.push(theirArray[i]);
             }
          }
-         console.log(answerArr, '*********');
+         // console.log(answerArr, '*********');
          this.events = answerArr;
-         console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
+         // console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
       }.bind(this);
 
 
@@ -170,22 +170,22 @@ app.controller('MainController', ['$http', function($http){
        };
 
 // ********************************************************//
-      this.updateUserEvent = function(user_event){
-        console.log('updateUserEvent function . . .' + user_event.id);
+      this.updateUserEvent = function(user_event, event){
+        console.log('updateUserEvent function . . .' , user_event, event.id);
          $http({
             method: 'PUT',
-            url: 'http://localhost:3000/user_events',
+            url: 'http://localhost:3000/user_events/' + event.id,
             headers: {
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
             },
-            data: { user_event: {
+            data: {
                user_event_name: user_event.user_event_name,
                date: user_event.date,
                category: user_event.category,
                user_id: user_event.user_id,
                start_time: user_event.start_time,
-               end_time: user_event.end_time,
-            }},
+               end_time: user_event.end_time
+            },
           }).then(function(result) {
              console.log('update user data from server: ', result);
           }.bind(this));
