@@ -93,7 +93,7 @@ app.controller('MainController', ['$http', function($http){
       this.showLoginModal = false;
       this.loginForm = true;
       this.regForm = false;
-      var controller = this;
+      controller = this;
       this.showLoginForm = function(){
          console.log('login form');
          this.loginForm = true;
@@ -109,12 +109,12 @@ app.controller('MainController', ['$http', function($http){
          // this.openRegion();
          var controller = this;
          console.log('clicking an event: ', event);
-         console.log(this.events);
+         // console.log(this.events);
          this.myEvent = event;
          var theirArray = controller.events;
          var answerArr = [];
          for (var i = 0; i < theirArray.length; i++) {
-            console.log(this.myEvent.date, "===", theirArray[i].date);
+            // console.log(this.myEvent.date, "===", theirArray[i].date);
 
             // if my events date is same as data in system.... show only matching dates
             if (this.myEvent.date == theirArray[i].date){
@@ -201,7 +201,7 @@ app.controller('MainController', ['$http', function($http){
               },
          }).then(function(result){
             console.log("Deleted data to our server: ", result);
-            
+
             // refreash events
         }.bind(this));
       };
