@@ -1,6 +1,7 @@
 console.log('test app.js loaded');
 angular.module('EventApp').controller('UserController', ['$scope', '$http',function($scope, $http){
    this.user = {};
+   this.user.id = 0;
    this.current_user_id = {};
    this.users = [];
    this.userPass = {};
@@ -28,6 +29,7 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
          localStorage.setItem('token', JSON.stringify(response.data.token));
          localStorage.setItem('my_events_user_id', JSON.stringify(this.current_user_id));
          localStorage.setItem('my_events_username', JSON.stringify(userPass.username));
+         this.user_id=this.current_user_id;
          // localStorage.setItem('my_events_address', JSON.stringify(userPass.full_address));
          // localStorage.setItem('my_events_is_admin', JSON.stringify(userPass.is_admin));
       }.bind(this));

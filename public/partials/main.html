@@ -1,10 +1,43 @@
 <h1>User's Events</h1>
 <button ng-click="main.resetUsersEvents()">RESET</button>
-<div class="event-list" ng-class="{selected: selected}" ng-repeat="event in main.userEvents ">
-   <li  ng-click="main.clickOneEvent(event)">
+<div class="event-list" ng-class="{selected: selected}" ng-repeat="event in main.userEvents | filter: {user_id: userCtrl.user.id}">
+   <li  >
+      <div ng-click="main.clickOneEvent(event)">
      <h3>{{event.user_event_name}}</h3>
-     <h4>event date: {{event.date}}</h4>
-     <h5>start time: {{event.start_time}}</h5>
-     <h5>end time: {{event.end_time}}</h5>
+     <h4>event date: {{event.date |date:format:shortDate}}</h4>
+     <h5>start time: {{event.start_time | date:'h:mma'}}</h5>
+     <h5>end time: {{event.end_time | date:'h:mma'}}</h5>
+     <h5>user_id {{event.user_id}}</h5>
+  </div>
+
+     <a href="#" ng-click=" main.toggleUpdateUserEvent = !main.toggleUpdateUserEvent">Update</a><br>
+     <a href="#" class="user-event-x" ng-click="main.deleteUserEvent(event)">Delete</a>
+
+     <form ng-show="main.toggleUpdateUserEvent"  ng-submit="main.updateUserEvent(user_event, event)">
+         <input type="hidden" ng-model="user_event.user_id">
+           <div class="form-group">
+             <label for="user_event.category">Category:</label><br/>
+             <input type="text" ng-model="user_event.category" placeholder="{{event.category}}"/><br>
+           </div>
+           <div class="form-group">
+             <label for="user_event.user_event_name">Event Name:</label><br/>
+             <input type="text" ng-model="user_event.user_event_name" placeholder="{{event.user_event_name}}"/><br>
+           </div>
+           <div class="form-group">
+             <label for="user_event.date">Event Date:</label><br/>
+             <input type="date" ng-model="user_event.date" placeholder="event.date"/><br>
+           </div>
+           <div class="form-group">
+             <label for="user_event.start_time">Start Time:</label><br/>
+             <input type="time" ng-model="user_event.start_time" placeholder="{{event.start_time}}"/><br>
+           </div>
+           <div class="form-group">
+             <label for="user_event.end_time">End Time:</label><br/>
+             <input type="time" ng-model="user_event.end_time" placeholder="{{event.end_time}}"/><br>
+           </div>
+           <div class="form-group">
+             <input type="submit" type="submit"/>
+           </div>
+     </form>
      <!-- <label><input type="checkbox" ng-model="selected"></label> -->
    </li>
