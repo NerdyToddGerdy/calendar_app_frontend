@@ -88,7 +88,7 @@ app.controller('MainController', ['$http', function($http){
          console.log(this.events);
          $http({
             method:"GET",
-            url: 'http://localhost:3000/events/'
+            url: this.url + '/events/'
          }).then(function(response){
             console.log(response.data);
             this.events = response.data;
