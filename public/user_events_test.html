@@ -22,7 +22,7 @@
    <div ng-controller="UserController as userCtrl">
       <header>header</header>
 
-      <a href="user_auth_test.html">User Auth</a> 
+      <a href="user_auth_test.html">User Auth</a>
       <button ng-click="ctrl.testFireFunction();" size="40">Fire Function</button><br>
 
       Logged user id:{{ ctrl.currentUserId }} | ctrl.currentUserId <br>
@@ -81,17 +81,19 @@
             <div ng-repeat="userEvent in ctrl.userEvents" class="userEvents">
                <p>{{userEvent.user_event_name}} | (ID: {{userEvent.id}})
                   <span ng-click="ctrl.deleteUserEvent(userEvent.id)"> (delete event)</span>
-                  <span ng-click="ctrl.updateUserEventFormToggle = !ctrl.updateUserEventFormToggle">Update Event</span></p>
+                  <!-- <span ng-click="ctrl.updateUserEventFormToggle = !ctrl.updateUserEventFormToggle">Update Event</span></p> -->
+                  <span ng-click="ctrl.updateUserEvent(event)">Update Event</span></p>
+
             </div>
          </section> <!-- end list user events -->
          <section class="clsUpdateUserEvents"> <!-- { user_event_id: ctrl.user_event.id } -->
                <div ng-repeat="user_event in ctrl.userEvents | filter: { user_event_id: 10 }" >
-                  <form ng-show="ctrl.updateUserEventFormToggle" ng-submit="ctrl.submitUserEventForm(user_event)">
+                  <form ng-show="ctrl.updateUserEventFormToggle" ng-submit="ctrl.updateUserEvent(user_event)">
 
                      <input type="hidden" ng-model="user_event.user_id">
                      <div class="form-group">
                         <label for="user_event.category">Category:</label><br/>
-                        <input type="text" ng-model="cuser_event.category" placeholder="Category"/><br>
+                        <input type="text" ng-model="user_event.category" placeholder="Category"/><br>
                      </div>
                      <div class="form-group">
                         <label for="user_event.user_event_name">Event Name:</label><br/>
