@@ -147,6 +147,7 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
          console.log('register Data from server: ', result);
          // display success
          // this.regformdata={}; //clears form
+         this.login(this.regformdata);
        }.bind(this));      //
       };
       //end process form
