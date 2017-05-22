@@ -22,6 +22,7 @@ app.controller('MainController', ['$http', function($http){
    this.events = [];
    this.formdata = {};
    this.userEvents = [];
+   this.addEventFormToggle = false;
 
 
    // this.openRegion = function(){
