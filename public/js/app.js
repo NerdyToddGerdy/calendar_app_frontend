@@ -151,9 +151,11 @@ app.controller('MainController', ['$http', function($http){
     };
 
 // ********************************************************// this.formdata
-      this.createUserEvent = function(){
+      this.createUserEvent = function(user_event, currentUserId){
         console.log('click submit event');
         console.log(localStorage.getItem("my_events_user_id"));
+        console.log("form data ", user_event);
+        console.log(currentUserId.current_user_id);
          $http({
             method: 'POST',
             url: this.url + '/user_events' ,
@@ -161,14 +163,13 @@ app.controller('MainController', ['$http', function($http){
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
             },
             data: {
-                user_event: {
-               user_event_name: this.formdata.user_event_name,
-               date: this.formdata.date,
-               category: this.formdata.category,
-               user_id: parseInt(this.currentUserId),
-               start_time: this.formdata.start_time,
-               end_time: this.formdata.end_time,
-            }},
+               user_event_name: user_event.user_event_name,
+               date: user_event.date,
+               category: user_event.category,
+               user_id: currentUserId.current_user_id,
+               start_time: user_event.start_time,
+               end_time: user_event.end_time
+            },
          }).then(function(result){
             console.log("submitEventForm: ", result);
             // add user event refresh

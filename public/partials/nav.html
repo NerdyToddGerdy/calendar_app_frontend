@@ -1,7 +1,7 @@
     <!-- <form ng-submit="main.addUserEventForm()"> -->
 <h3 ng-click="main.addEventFormToggle = !main.addEventFormToggle">Add Event</h3>
 
-<form ng-show="main.addEventFormToggle" ng-submit="main.createUserEvent(usermain.user)">
+<form ng-show="main.addEventFormToggle" ng-submit="main.createUserEvent(main.formdata, userCtrl)">
    <div class="form-group">
       <label for="main.formdata.user_event_name">Event Name</label><br/>
       <input type="text" ng-model="main.formdata.user_event_name" placeholder="Event Name"/><br>
@@ -23,11 +23,11 @@
    </div>
    <div class="form-group">
       <label for="main.formdata.start_time">Start Time:</label><br/>
-      <input type="text" ng-model="main.formdata.start_time" placeholder="Start Time"/><br>
+      <input type="time" ng-model="main.formdata.start_time" placeholder="Start Time"/><br>
    </div>
    <div class="form-group">
       <label for="main.formdata.end_time">End Time:</label><br/>
-      <input type="text" ng-model="main.formdata.end_time" placeholder="End Time"/><br>
+      <input type="time" ng-model="main.formdata.end_time" placeholder="End Time"/><br>
    </div>
    <input type="submit" type="submit"/>
 </form>
