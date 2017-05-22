@@ -12,7 +12,6 @@ var app = angular.module('EventApp',[]);
 this.events=[];
 this.userEvents=[];
 this.showUserEvents = true;
-this.url = 'https://calendar-app-api.herokuapp.com/'
 
 app.controller('MainController', ['$http', function($http){
    // this.toggleRegionA = true;
@@ -24,12 +23,11 @@ app.controller('MainController', ['$http', function($http){
    this.formdata = {};
    this.userEvents = [];
 
-
    // this.openRegion = function(){
    // this.toggleRegionA = !this.toggleRegionA;
    $http({
       method:"GET",
-      url: 'http://localhost:3000/events'
+      url: 'https://calendar-app-api.herokuapp.com/users/'
    }).then(function(response){
       console.log(response.data);
       this.events = response.data;
@@ -38,7 +36,7 @@ app.controller('MainController', ['$http', function($http){
 
    $http({
       method: "GET",
-      url: 'http://localhost:3000/user_events'
+      url: 'https://calendar-app-api.herokuapp.com/user_events/'
    }).then(function(response){
       console.log('get user events ',response.data);
       this.userEvents = response.data;
@@ -51,7 +49,7 @@ app.controller('MainController', ['$http', function($http){
 
    $http({
       method: "GET",
-      url: 'http://localhost:3000/user_events'
+      url: 'https://calendar-app-api.herokuapp.com/user_events/'
    }).then(function(response){
       console.log(response);
       console.log(response.data);
@@ -84,7 +82,7 @@ app.controller('MainController', ['$http', function($http){
          console.log(this.events);
          $http({
             method:"GET",
-            url: 'http://localhost:3000/events'
+            url: 'https://calendar-app-api.herokuapp.com/events/'
          }).then(function(response){
             console.log(response.data);
             this.events = response.data;
@@ -151,7 +149,7 @@ app.controller('MainController', ['$http', function($http){
 
          $http({
             method: 'POST',
-            url: 'http://localhost:3000/user_events' ,
+            url: 'https://calendar-app-api.herokuapp.com/user_events/' ,
             data: {
                 user_event: {
                user_event_name: this.formdata.user_event_name,
@@ -172,7 +170,7 @@ app.controller('MainController', ['$http', function($http){
         console.log('updateUserEvent function . . .' + user_event.id);
          $http({
             method: 'PUT',
-            url: 'http://localhost:3000/user_events',
+            url: 'https://calendar-app-api.herokuapp.com/user_events/',
             data: { user_event: {
                user_event_name: user_event.user_event_name,
                date: user_event.date,
@@ -190,7 +188,7 @@ app.controller('MainController', ['$http', function($http){
         console.log('delete user id ' + id);
          $http({
             method:'DELETE',
-            url: 'http://localhost:3000/user_events/' + id,
+            url: 'https://calendar-app-api.herokuapp.com/user_events/' + id,
          }).then(function(result){
             console.log("Deleted data to our server: ", result);
             // refreash events

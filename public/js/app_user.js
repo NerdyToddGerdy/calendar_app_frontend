@@ -6,7 +6,7 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
    this.userPass = {};
    this.update_user_data = {};
    this.test = "hi we love angular";
-   this.url = 'http://localhost:3000';
+   this.url = 'https://calendar-app-api.herokuapp.com/';
    //this.update_user_data
 
    /// ******************************* ///
@@ -61,16 +61,16 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
 
 
    /// ******************************* ///
-   this.deleteUser = function(num){
-      $http({
-         url: this.url + '/users/' + num,
-         method: 'DELETE'
-
-      }).then(function(response){
-         console.log('delete user response:' + response + ' id ' + num);
-         //delete user
-      });
-   };
+  //  this.deleteUser = function(num){
+  //     $http({
+  //        url: this.url + '/users/' + num,
+  //        method: 'DELETE'
+   //
+  //     }).then(function(response){
+  //        console.log('delete user response:' + response + ' id ' + num);
+  //        //delete user
+  //     });
+  //  };
    /// ******************************* ///
    this.deleteUser = function(id){
       console.log('delete user id ' + id);
