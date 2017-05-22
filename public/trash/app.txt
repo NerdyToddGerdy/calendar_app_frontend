@@ -1,0 +1,13 @@
+var port = process.env.PORT || 3000;
+var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/beers'
+
+https://github.com/ga-students/wdi-remote-hopper/blob/e801634a4f31a1dc13afd3a39814941477559b3f/unit_2/w07d01/instructor_notes/heroku.md
+
+
+
+JWT_SECRET=!8675309!12345678!
+JWT_ISSUER=jim_doughty
+
+var URI = process.env.URI || http://localhost:3000;
+
+this.url = 'http://localhost:3000';
