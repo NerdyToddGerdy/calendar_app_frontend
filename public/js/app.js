@@ -15,7 +15,7 @@ this.userEvents=[];
 this.showUserEvents = true;
 
 app.controller('MainController', ['$http', function($http){
-this.url = ""
+this.url = "";
 
    this.getDomainName = function(){
       var myurl = "https://calendar-app-api.herokuapp.com";
@@ -221,5 +221,5 @@ this.url = ""
 
   // ********************************************************//
 
-
+ this.getDomainName();
 }]);
