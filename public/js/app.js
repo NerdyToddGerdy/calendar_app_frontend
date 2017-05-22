@@ -22,12 +22,14 @@ app.controller('MainController', ['$http', function($http){
    this.events = [];
    this.formdata = {};
    this.userEvents = [];
+   this.addEventFormToggle = false;
+
 
    // this.openRegion = function(){
    // this.toggleRegionA = !this.toggleRegionA;
    $http({
       method:"GET",
-      url: 'http://localhost:3000/users'
+      url: 'http://localhost:3000/events'
    }).then(function(response){
       console.log(response.data);
       this.events = response.data;
@@ -36,7 +38,7 @@ app.controller('MainController', ['$http', function($http){
 
    $http({
       method: "GET",
-      url: 'http://localhost:3000/user_events/'
+      url: 'http://localhost:3000/user_events'
    }).then(function(response){
       console.log('get user events ',response.data);
       this.userEvents = response.data;
@@ -49,7 +51,7 @@ app.controller('MainController', ['$http', function($http){
 
    $http({
       method: "GET",
-      url: 'http://localhost:3000/user_events/'
+      url: 'http://localhost:3000/user_events'
    }).then(function(response){
       console.log(response);
       console.log(response.data);
@@ -71,24 +73,22 @@ app.controller('MainController', ['$http', function($http){
       this.regForm = true;
    };
 
-   this.clickOneEvent = function(event){
-      // this.openRegion();
-      this.resetUsersEvents = function(){
-         console.log(this.events);
-         this.events = [];
-         $('.event-list').on('click', function(){
-            $(this).toggleClass('selected');
-         });
-         console.log(this.events);
-         $http({
-            method:"GET",
-            url: 'http://localhost:3000/events/'
-         }).then(function(response){
-            console.log(response.data);
-            this.events = response.data;
-         }.bind(this));
-         console.log(this.events);
-      };
+   this.resetUsersEvents = function(){
+      console.log(this.events);
+      console.log('resetUsersEvents');
+      this.events = [];
+      $('.event-list').on('click', function(){
+         $(this).toggleClass('selected');
+      });
+      console.log(this.events);
+      $http({
+         method:"GET",
+         url: 'http://localhost:3000/events'
+      }).then(function(response){
+         console.log(response.data);
+         this.events = response.data;
+      }.bind(this));
+      console.log(this.events);
    };
       this.showLoginModal = false;
       this.loginForm = true;
@@ -144,23 +144,27 @@ app.controller('MainController', ['$http', function($http){
     };
 
 // ********************************************************// this.formdata
-      this.createUserEvent = function(){
+      this.createUserEvent = function(currentUser){
+        this.currentUserId = localStorage.getItem("my_events_user_id");
         console.log('click submit event');
-
+        console.log(currentUser);
          $http({
             method: 'POST',
-            url: 'http://localhost:3000/user_events/' ,
+            url: 'http://localhost:3000/user_events' ,
+            headers: {
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            },
             data: {
-                user_event: {
                user_event_name: this.formdata.user_event_name,
                date: this.formdata.date,
                category: this.formdata.category,
                user_id: parseInt(this.currentUserId),
                start_time: this.formdata.start_time,
                end_time: this.formdata.end_time,
-            }},
+            }
          }).then(function(result){
             console.log("submitEventForm: ", result);
+
             // add user event refresh
           }.bind(this));
        };
@@ -170,7 +174,10 @@ app.controller('MainController', ['$http', function($http){
         console.log('updateUserEvent function . . .' + user_event.id);
          $http({
             method: 'PUT',
-            url: 'http://localhost:3000/user_events/',
+            url: 'http://localhost:3000/user_events',
+            headers: {
+            Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            },
             data: { user_event: {
                user_event_name: user_event.user_event_name,
                date: user_event.date,
@@ -189,8 +196,12 @@ app.controller('MainController', ['$http', function($http){
          $http({
             method:'DELETE',
             url: 'http://localhost:3000/user_events/' + id,
+            headers: {
+              Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+              },
          }).then(function(result){
             console.log("Deleted data to our server: ", result);
+
             // refreash events
         }.bind(this));
       };

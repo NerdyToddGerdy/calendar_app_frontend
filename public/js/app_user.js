@@ -1,3 +1,30 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Gist
+ToDo
+ @kishii55
+ Sign out
+ Watch 2
+  Star 1
+ Fork 1 Toadilicious/calendar_app_frontend
+ Code
+ Issues 0
+ Pull requests 0
+ Boards
+ Reports
+ Projects 0
+ Wiki
+
+Branch: master Find file Copy pathcalendar_app_frontend/public/js/app_user.js
+59aa8d4  11 hours ago
+@d0ughtyj d0ughtyj user event forms
+3 contributors @d0ughtyj @kishii55 @Toadilicious
+RawBlameHistory
+156 lines (135 sloc)  5.14 KB
 console.log('test app.js loaded');
 angular.module('EventApp').controller('UserController', ['$scope', '$http',function($scope, $http){
    this.user = {};
@@ -6,7 +33,7 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
    this.userPass = {};
    this.update_user_data = {};
    this.test = "hi we love angular";
-   this.url = 'http://localhost:3000/';
+   this.url = 'http://localhost:3000';
    //this.update_user_data
 
    /// ******************************* ///
@@ -153,3 +180,5 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
 
 
 }]);
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
