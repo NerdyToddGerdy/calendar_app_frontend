@@ -145,13 +145,13 @@ app.controller('MainController', ['$http', function($http){
     };
 
 // ********************************************************// this.formdata
-      this.createUserEvent = function(){
+      this.createUserEvent = function(currentUser){
         console.log('click submit event');
-
+        console.log(currentUser);
          $http({
             method: 'POST',
             url: 'http://localhost:3000/user_events' ,
-            data: {
+            data: {user: currentUser ,
                 user_event: {
                user_event_name: this.formdata.user_event_name,
                date: this.formdata.date,
@@ -159,7 +159,7 @@ app.controller('MainController', ['$http', function($http){
                user_id: parseInt(this.currentUserId),
                start_time: this.formdata.start_time,
                end_time: this.formdata.end_time,
-            }},
+            }}
          }).then(function(result){
             console.log("submitEventForm: ", result);
             // add user event refresh
