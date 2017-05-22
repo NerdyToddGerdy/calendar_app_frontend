@@ -86,22 +86,26 @@ this.url = ""
       this.regForm = true;
    };
 
-   this.resetUsersEvents = function(){
-      console.log(this.events);
-      console.log('resetUsersEvents');
-      this.events = [];
-      $('.event-list').on('click', function(){
-         $(this).toggleClass('selected');
-      });
-      console.log(this.events);
-      $http({
-         method:"GET",
-         url: this.url + '/events'
-      }).then(function(response){
-         console.log(response.data);
-         this.events = response.data;
-      }.bind(this));
-      console.log(this.events);
+
+   this.clickOneEvent = function(event){
+      // this.openRegion();
+      this.resetUsersEvents = function(){
+         console.log(this.events);
+         this.events = [];
+         $('.event-list').on('click', function(){
+            $(this).toggleClass('selected');
+         });
+         console.log(this.events);
+         $http({
+            method:"GET",
+            url: 'http://localhost:3000/events/'
+         }).then(function(response){
+            console.log(response.data);
+            this.events = response.data;
+         }.bind(this));
+         console.log(this.events);
+      };
+
    };
       this.showLoginModal = false;
       this.loginForm = true;
@@ -157,8 +161,7 @@ this.url = ""
     };
 
 // ********************************************************// this.formdata
-      this.createUserEvent = function(currentUser){
-        this.currentUserId = localStorage.getItem("my_events_user_id");
+      this.createUserEvent = function(){
         console.log('click submit event');
         console.log(localStorage.getItem("my_events_user_id"));
          $http({
@@ -168,16 +171,16 @@ this.url = ""
             Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
             },
             data: {
+                user_event: {
                user_event_name: this.formdata.user_event_name,
                date: this.formdata.date,
                category: this.formdata.category,
                user_id: parseInt(this.currentUserId),
                start_time: this.formdata.start_time,
                end_time: this.formdata.end_time,
-            }
+            }},
          }).then(function(result){
             console.log("submitEventForm: ", result);
-
             // add user event refresh
           }.bind(this));
        };
