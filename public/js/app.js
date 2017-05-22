@@ -12,6 +12,7 @@ var app = angular.module('EventApp',[]);
 this.events=[];
 this.userEvents=[];
 this.showUserEvents = true;
+this.url = 'https://calendar-app-api.herokuapp.com/'
 
 app.controller('MainController', ['$http', function($http){
    // this.toggleRegionA = true;
