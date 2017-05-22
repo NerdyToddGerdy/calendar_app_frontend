@@ -61,16 +61,16 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
 
 
    /// ******************************* ///
-   this.deleteUser = function(num){
-      $http({
-         url: this.url + '/users/' + num,
-         method: 'DELETE'
-
-      }).then(function(response){
-         console.log('delete user response:' + response + ' id ' + num);
-         //delete user
-      });
-   };
+  //  this.deleteUser = function(num){
+  //     $http({
+  //        url: this.url + '/users/' + num,
+  //        method: 'DELETE'
+   //
+  //     }).then(function(response){
+  //        console.log('delete user response:' + response + ' id ' + num);
+  //        //delete user
+  //     });
+  //  };
    /// ******************************* ///
    this.deleteUser = function(id){
       console.log('delete user id ' + id);
