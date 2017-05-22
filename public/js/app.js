@@ -201,7 +201,7 @@ app.controller('MainController', ['$http', function($http){
               },
          }).then(function(result){
             console.log("Deleted data to our server: ", result);
-            
+
             // refreash events
         }.bind(this));
       };
