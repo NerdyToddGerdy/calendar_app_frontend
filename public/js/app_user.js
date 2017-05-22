@@ -1,6 +1,7 @@
 console.log('test app.js loaded');
 angular.module('EventApp').controller('UserController', ['$scope', '$http',function($scope, $http){
    this.user = {};
+   this.current_user_id = {};
    this.users = [];
    this.userPass = {};
    this.update_user_data = {};
@@ -22,13 +23,19 @@ angular.module('EventApp').controller('UserController', ['$scope', '$http',funct
       }).then(function(response) {
          console.log('login localstorage: ' + response);
          this.user = response.data.user;
+         this.current_user_id = response.data.user.id;
+         console.log('current user id ', this.current_user_id);
          localStorage.setItem('token', JSON.stringify(response.data.token));
-         // localStorage.setItem('my_events_user_id', JSON.stringify(userPass.id));
+         localStorage.setItem('my_events_user_id', JSON.stringify(this.current_user_id));
          localStorage.setItem('my_events_username', JSON.stringify(userPass.username));
          // localStorage.setItem('my_events_address', JSON.stringify(userPass.full_address));
          // localStorage.setItem('my_events_is_admin', JSON.stringify(userPass.is_admin));
       }.bind(this));
    };
+
+   /// ******************************* ///
+
+
 
    /// ******************************* ///
    this.getUsers = function(){
