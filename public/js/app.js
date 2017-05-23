@@ -144,7 +144,7 @@ app.controller('MainController', ['$http', function($http){
             // console.log(this.myEvent.date, "===", theirArray[i].date);
 
             // if my events date is same as data in system.... show only matching dates
-            if (this.myEvent.date == theirArray[i].user_event_date){
+            if (this.myEvent.user_event_date == theirArray[i].user_event_date){
                answerArr.push(theirArray[i]);
             }
          }
