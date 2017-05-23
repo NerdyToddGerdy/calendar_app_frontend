@@ -1,3 +1,8 @@
+INSERT INTO user_events (user_event_name, user_event_date, user_id)  VALUES ('test e', {d '2006-04-13'), 9;
+
+
+datetime="yyyy-MM-dd"
+
 
 UserEvent.create([
     {user_event_name: "picnic", user_id: 1, user_event_date: "03/03/2017", start_time: "3:30", end_time: "4:40", category: "fun"},

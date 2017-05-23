@@ -17,7 +17,14 @@
          <input type="hidden" ng-model="user_event.user_id">
            <div class="form-group">
              <label for="user_event.category">Category:</label><br/>
-             <input type="text" ng-model="user_event.category" placeholder="{{event.category}}"/><br>
+             <!-- <input type="text" ng-model="user_event.category" placeholder="{{event.category}}"/><br> -->
+             <select ng-model="user_event.category" ng-attr-size="4" selected="{{event.category}}"><br>
+                <option>Business</option>
+                <option>Family</option>
+                <option>Kids</option>
+                <option>Other Family</option>
+             </select>
+
            </div>
            <div class="form-group">
              <label for="user_event.user_event_name">Event Name:</label><br/>
