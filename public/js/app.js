@@ -100,10 +100,6 @@ app.controller('MainController', ['$http', function($http){
       this.loginForm = false;
       this.regForm = true;
    };
-
-
-   this.clickOneEvent = function(event){
-      // this.openRegion();
       this.resetUsersEvents = function(){
          console.log(this.events);
          this.events = [];
@@ -120,8 +116,6 @@ app.controller('MainController', ['$http', function($http){
          }.bind(this));
          console.log(this.events);
       };
-
-   };
       this.showLoginModal = false;
       this.loginForm = true;
       this.regForm = false;
