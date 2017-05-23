@@ -45,9 +45,9 @@ app.controller('MainController', ['$http', function($http){
    console.log(this.url);
 
    ///*****************************************************////
-   this.getUserEventList = function(id){
+   this.getUserEventList = function(){
       $http({
-         url: this.url + '/user_events/' + id,
+         url: this.url + '/user_events/',
          method: 'GET',
          headers:{
             Authorization: 'Bearer ' +
@@ -59,7 +59,8 @@ app.controller('MainController', ['$http', function($http){
             this.error = "Unauthorized (41)";
          } else {
             console.log('refresh user event list');
-            this.user_event_list = response.data;
+            // this.user_event_list = response.data;
+            this.userEvents = response.data;
          }
       }.bind(this));
    };
@@ -197,6 +198,7 @@ app.controller('MainController', ['$http', function($http){
          }).then(function(result){
             console.log("submitEventForm: ", result);
             // add user event refresh
+            this.getUserEventList();
           }.bind(this));
        };
 
@@ -219,7 +221,7 @@ app.controller('MainController', ['$http', function($http){
             },
           }).then(function(result) {
              console.log('update user data from server: ', result);
-
+             this.getUserEventList();
 
           }.bind(this));
        };
@@ -234,7 +236,7 @@ app.controller('MainController', ['$http', function($http){
               },
          }).then(function(result){
             console.log("Deleted data to our server: ", result);
-
+            this.getUserEventList();
             // refreash events
         }.bind(this));
       };
