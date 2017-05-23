@@ -139,9 +139,10 @@ app.controller('MainController', ['$http', function($http){
          this.myEvent = event;
          console.log(this.myEvent, "My Event");
          var theirArray = controller.events;
+         console.log("theirArray", theirArray);
          var answerArr = [];
+         console.log('answerArr', answerArr);
          for (var i = 0; i < theirArray.length; i++) {
-            // console.log(this.myEvent.date, "===", theirArray[i].date);
 
             // if my events date is same as data in system.... show only matching dates
             if (this.myEvent.user_event_date == theirArray[i].user_event_date){
