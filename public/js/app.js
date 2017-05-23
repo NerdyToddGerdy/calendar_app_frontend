@@ -148,9 +148,9 @@ app.controller('MainController', ['$http', function($http){
                answerArr.push(theirArray[i]);
             }
          }
-         // console.log(answerArr, '*********');
+         console.log(answerArr, '*********');
          this.events = answerArr;
-         // console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
+         console.log(this.events, '%%%%%%%%%%%%%%%%%%%%');
       }.bind(this);
 
 
