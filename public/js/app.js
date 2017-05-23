@@ -189,7 +189,7 @@ app.controller('MainController', ['$http', function($http){
             },
             data: {
                user_event_name: user_event.user_event_name,
-               date: user_event.user_event_date,
+               user_event_date: user_event.user_event_date,
                category: user_event.category,
                user_id: currentUserId.current_user_id,
                start_time: user_event.start_time,
@@ -213,7 +213,7 @@ app.controller('MainController', ['$http', function($http){
             },
             data: {
                user_event_name: user_event.user_event_name,
-               date: user_event.date,
+               user_event_date: user_event.date,
                category: user_event.category,
                user_id: user_event.user_id,
                start_time: user_event.start_time,

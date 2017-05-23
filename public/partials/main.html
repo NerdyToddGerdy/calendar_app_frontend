@@ -13,7 +13,7 @@
      <a href="#" ng-click=" main.toggleUpdateUserEvent = !main.toggleUpdateUserEvent">Update</a><br>
      <a href="#" class="user-event-x" ng-click="main.deleteUserEvent(event)">Delete</a>
 
-     <form ng-show="main.toggleUpdateUserEvent"  ng-submit="main.updateUserEvent(user_event, event)">
+     <form ng-show="main.toggleUpdateUserEvent"  ng-submit="main.updateUserEvent(user_event, event); main.toggleUpdateUserEvent = !main.toggleUpdateUserEvent">
          <input type="hidden" ng-model="user_event.user_id">
            <div class="form-group">
              <label for="user_event.category">Category:</label><br/>
