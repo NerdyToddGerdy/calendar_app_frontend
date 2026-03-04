@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "",
   "license": "ISC",
@@ -19,7 +21,9 @@
     "mongoose": "^4.9.7",
     "morgan": "^1.8.1",
     "ngmap": "^1.18.4",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "snyk": "^1.41.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "snyk": true
 }
